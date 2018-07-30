@@ -1,0 +1,22 @@
+;; 高亮当前行
+(global-hl-line-mode t)
+
+(global-linum-mode t) ;; enable line numbers globally
+(column-number-mode 1)
+
+
+
+
+(display-time-mode t)
+(setq display-time-24hr-format 1)
+
+(display-battery-mode t)
+
+;;(require 'sr-speedbar)
+
+;;----------global-key------------
+
+(global-set-key (kbd "C->") 'other-window) ;; set hotkey change window
+(fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
+
+(provide 'init-kuma)
