@@ -14,7 +14,8 @@
 (require 'init-kuma)
 (require 'init-term)
 (require 'init-csv)
-
+(require 'init-dired)
+(require 'init-docker)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -22,7 +23,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (csv-mode ag multi-term magit sr-speedbar fullframe)))
+    (docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
  '(term-default-bg-color "#000000")
  '(term-default-fg-color "#dddd00"))
 (custom-set-faces
