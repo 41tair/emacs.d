@@ -12,7 +12,7 @@
 
 (display-battery-mode t)
 
-(require 'sr-speedbar)
+;;(require 'sr-speedbar)
 
 
 (setq make-backup-files nil)
