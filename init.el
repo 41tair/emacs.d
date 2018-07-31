@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 
 
 (package-initialize)
