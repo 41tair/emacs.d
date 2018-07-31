@@ -23,7 +23,7 @@
 ;;----------global-key------------
 
 (global-set-key (kbd "C->") 'other-window) ;; set hotkey change window
-
+(global-set-key "\C-ca" 'org-agenda)
 ;; Magit shortcut
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)

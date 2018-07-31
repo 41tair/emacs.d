@@ -21,6 +21,8 @@
 (require 'init-python)
 (require 'init-flycheck)
 (require 'init-flyspell)
+(require 'init-org)
+;;(require 'init-session)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,6 +31,7 @@
  '(package-selected-packages
    (quote
     (jedi 0blayout company-jedi flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
+ '(session-use-package t nil (session))
  '(term-default-bg-color "#000000")
  '(term-default-fg-color "#dddd00"))
 (custom-set-faces
