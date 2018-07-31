@@ -33,8 +33,8 @@
 ;;; Also use Melpa for most packages
 (add-to-list 'package-archives
              `("melpa" . ,(if sanityinc/no-ssl
-                              "http://stable.melpa.org/packages/"
-                            "https://stable.melpa.org/packages/")))
+                              "http://melpa.org/packages/"
+                            "https://melpa.org/packages/")))
 
 (unless sanityinc/no-ssl
   ;; Force SSL for GNU ELPA
