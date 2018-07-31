@@ -1,0 +1,12 @@
+;;; Automatically generated on Tue Jul 31 14:43:44 2018
+;;; Invoked by byron@Byronwangs-MacBook-Pro.local using 26.1
+(setq-default kill-ring '("(setq org-agenda-files
+(list \"~/Documents/org/GTD.org\"))"))
+(setq-default session-file-alist '(("~/.emacs.d/lisp/init-org.el" 13863 13807 1 nil nil 13863 (overwrite-mode)) ("~/.emacs.d/lisp/init-kuma.el" 687 687 1 nil nil 687 (overwrite-mode)) ("~/.emacs.d/init.el" 494 nil 1 nil nil 494 (overwrite-mode))))
+(setq-default file-name-history '(#("/Users/byron/.emacs.d/lisp/init-kuma.el" 0 39 (ivy-index 10)) #("/Users/byron/.emacs.d/lisp/init-org.el" 0 38 (ivy-index 11)) "~/.emacs.d/lisp/init-python.el" #("/Users/byron/.emacs.d/lisp/" 0 27 (ivy-index 0)) #("/Users/byron/.emacs.d/lisp/init-session.el" 0 42 (ivy-index 0)) "~/.emacs.d/init.el"))
+(setq-default command-history '((dired "/Users/byron/.emacs.d/lisp/" nil) (eval-buffer) (execute-extended-command nil "eval-buffer" "eval-bu") (find-file "~/.emacs.d/init.el" t)))
+(setq-default counsel-git-grep-cmd-history '("git --no-pager grep --full-name -n --no-color -i -e \"%s\""))
+(setq-default extended-command-history '("eval-buffer"))
+(setq-default occur-collect-regexp-history '("\\1"))
+(setq-default serial-name-history '("/dev/ttys0"))
+(setq-default serial-speed-history '("9600" "1200" "2400" "4800" "14400" "19200" "28800" "38400" "57600" "115200"))
