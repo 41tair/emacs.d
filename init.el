@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
+    (jedi 0blayout company-jedi flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
  '(term-default-bg-color "#000000")
  '(term-default-fg-color "#dddd00"))
 (custom-set-faces
@@ -40,3 +40,4 @@
 
 (provide 'init)
 (put 'downcase-region 'disabled nil)
+
