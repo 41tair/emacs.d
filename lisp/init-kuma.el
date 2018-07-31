@@ -29,6 +29,8 @@
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 (global-set-key (kbd "C-x C-t") 'multi-term)
 
+(global-set-key [f12] 'goto-line)
+(global-set-key [f3] 'execute-extended-command)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
 
 (global-undo-tree-mode)
