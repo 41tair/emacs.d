@@ -31,4 +31,5 @@
 
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
 
+(global-undo-tree-mode)
 (provide 'init-kuma)
