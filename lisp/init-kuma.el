@@ -1,6 +1,7 @@
 ;; 高亮当前行
 (global-hl-line-mode t)
 
+(require 'cc-mode)
 (global-linum-mode t) ;; enable line numbers globally
 (column-number-mode 1)
 
