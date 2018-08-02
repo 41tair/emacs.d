@@ -26,6 +26,7 @@
 (require 'init-themes)
 (require 'init-jira)
 (require 'init-ibuffer)
+(require 'init-exec-path)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

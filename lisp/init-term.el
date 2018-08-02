@@ -20,5 +20,6 @@
 
 (add-to-list 'term-bind-key-alist '("C-x g"))
 (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-escape))
+(add-to-list 'term-bind-key-alist '("C-r" . isearch-backward))
 
 (provide 'init-term)

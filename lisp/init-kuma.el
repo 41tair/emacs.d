@@ -21,6 +21,11 @@
 (set-scroll-bar-mode nil)
 
 (put 'downcase-region 'disabled nil)
+
+(defun insertsshkey (string)
+  "Insert ssh key"
+  (interactive "sInsert ssh key")
+  (insert "mkdir -p ~/.ssh;touch ~/.ssh/authorized_keys;echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9GGP6aYJedzOK68wrqreRuezjS0KJ+CXge93i0ZYdxNqPL6snJcsm1i+MZJXFaqf3MQOfwcy72ijnHbC/iCF9sHAHzrOzviUpLugjO/b8pk7QoJ0ZMueQwDb+MqakS5NNBxXaxzz0d608VibzBRTgGcq4y2MIo53GEuSZZh7oNd4SN02QGHNGviudaCII2gc++thutnP2UZLQPqbWkjUjikW9LSScXGPtKII3wg4uwRVHRCz/2V99QTpG5et+OTvjr90817h2p7+8bCAX3qityapRXFVvKfpmhek18KTTqxanzMcyLpO80PQyTXU2Vu3wUUPIdhW75sc4eJclnbp3 altair96wby@gmail.com'>> ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys"))
 ;;----------global-key------------
 
 (global-set-key (kbd "C->") 'other-window) ;; set hotkey change window
@@ -31,9 +36,14 @@
 (global-set-key (kbd "C-x C-t") 'multi-term)
 
 (global-set-key [f12] 'goto-line)
+(global-set-key [f9] 'insertsshkey)
 (global-set-key [f3] 'execute-extended-command)
+(global-set-key [f4] 'ag-project)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
+
+(setq visible-bell 0)
 
 (global-undo-tree-mode)
 (require 'cc-mode)
 (provide 'init-kuma)
+
