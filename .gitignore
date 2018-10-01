@@ -2,3 +2,9 @@ auto-save-list/*
 elpa-26.1/*
 /recentf
 /.historian
+/eww-bookmarks
+/lisp/#init-company.el#
+/url/cookies
+.session
+tramp
+org-clock-save.el
