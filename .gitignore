@@ -8,3 +8,4 @@ elpa-26.1/*
 .session
 tramp
 org-clock-save.el
+*.dat
