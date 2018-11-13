@@ -39,6 +39,7 @@
 
 (global-set-key [f12] 'goto-line)
 (global-set-key [f9] 'insertsshkey)
+(global-set-key [f2] 'mu4e)
 (global-set-key [f3] 'execute-extended-command)
 (global-set-key [f4] 'ag-project)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
