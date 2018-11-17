@@ -25,7 +25,7 @@
      ;; about me
      (user-mail-address "altair96wby@gmail.com")
      (user-full-name "Byron wang")
-     (mu4e-compose-signature "Best regards.\n0xAX")
+     (mu4e-compose-signature "Best regards.\n Byron wang")
      ;; smtp
      (smtpmail-stream-type starttls)
      (smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil)))
@@ -38,7 +38,7 @@
      ;; about me
      (user-mail-address "altair.wang@daocloud.io")
      (user-full-name "Byron wang")
-     (mu4e-compose-signature "Best regards.\n0xAX")
+     (mu4e-compose-signature "Best regards.\n Byron wang ")
 
      ;; smtp
      (smtpmail-stream-type starttls)
