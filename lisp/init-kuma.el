@@ -63,5 +63,8 @@
 (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Micro Hei Mono" . 1.2) ("STHeiti". 1.2)))
 
 
+
+(setq url-gateway-method 'socks)
+(setq socks-server '("Default server" "127.0.0.1" 1086 5))
 (require 'cc-mode)
 (provide 'init-kuma)
