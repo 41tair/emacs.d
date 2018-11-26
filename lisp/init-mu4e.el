@@ -18,6 +18,7 @@
  mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
  mu4e-trash-folder "/Gmail/[Gmail].Trash")
 
+(setq mu4e-attachment-dir  "~/Downloads")
 
 
 (defvar my-mu4e-account-alist
