@@ -49,4 +49,5 @@
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
+;;(setq anaconda-mode-localhost-address "localhost")
 (provide 'init-company)

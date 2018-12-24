@@ -42,6 +42,8 @@
 (global-set-key [f2] 'mu4e)
 (global-set-key [f3] 'execute-extended-command)
 (global-set-key [f4] 'ag-project)
+(global-set-key [f5] 'kmacro-start-macro)
+(global-set-key [f6] 'kmacro-end-and-call-macro)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
 
 (setq visible-bell 0)
@@ -64,7 +66,7 @@
 
 
 
-(setq url-gateway-method 'socks)
-(setq socks-server '("Default server" "127.0.0.1" 1086 5))
+;;(setq url-gateway-method 'socks)
+;;(setq socks-server '("Default server" "127.0.0.1" 1086 5))
 (require 'cc-mode)
 (provide 'init-kuma)
