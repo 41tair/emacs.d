@@ -49,5 +49,10 @@
 
 (add-hook 'python-mode-hook 'my/python-mode-hook)
 
+(add-hook 'go-mode-hook
+      (lambda ()
+        (set (make-local-variable 'company-backends) '(company-go))
+        (company-mode)))
+
 ;;(setq anaconda-mode-localhost-address "localhost")
 (provide 'init-company)
