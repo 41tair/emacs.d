@@ -18,6 +18,8 @@
 
 (setq make-backup-files nil)
 
+(setq initial-scratch-message "Talk is cheap")
+
 (set-scroll-bar-mode nil)
 
 (put 'downcase-region 'disabled nil)
