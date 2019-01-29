@@ -71,5 +71,7 @@
 
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+(add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+
 
 (provide 'init-mu4e)
