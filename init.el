@@ -41,7 +41,7 @@
     ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(package-selected-packages
    (quote
-    (mu4e-alert evil-mu4e nginx-mode company-go go-mode org-jira zenburn-theme undo-tree jedi 0blayout company-jedi flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
+    (guru-mode go-guru mu4e-alert evil-mu4e nginx-mode company-go go-mode org-jira zenburn-theme undo-tree jedi 0blayout company-jedi flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag multi-term magit sr-speedbar fullframe)))
  '(session-use-package t nil (session))
  '(smtpmail-smtp-server "smtp.partner.outlook.cn")
  '(smtpmail-smtp-service 25)

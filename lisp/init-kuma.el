@@ -18,7 +18,7 @@
 
 (setq make-backup-files nil)
 
-(setq initial-scratch-message "Talk is cheap")
+(setq initial-scratch-message ";;Talk is cheap")
 
 (set-scroll-bar-mode nil)
 
@@ -66,6 +66,11 @@
 ;; Fix chinese font width and rescale
 (setq face-font-rescale-alist '(("Microsoft Yahei" . 1.2) ("WenQuanYi Micro Hei Mono" . 1.2) ("STHeiti". 1.2)))
 
+
+(with-eval-after-load "magit-fetch"
+(magit-define-popup-switch
+ 'magit-fetch-popup
+ ?t "Fetch tags from remote" "--tags"))
 
 
 ;;(setq url-gateway-method 'socks)
