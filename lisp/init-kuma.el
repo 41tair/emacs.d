@@ -73,7 +73,10 @@
  ?t "Fetch tags from remote" "--tags"))
 
 
+(show-paren-mode t)
+
 ;;(setq url-gateway-method 'socks)
 ;;(setq socks-server '("Default server" "127.0.0.1" 1086 5))
 ;;(require 'cc-mode)
+
 (provide 'init-kuma)
