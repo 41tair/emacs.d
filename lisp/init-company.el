@@ -15,6 +15,7 @@
     (setq-default company-dabbrev-other-buffers 'all
                   company-tooltip-align-annotations t))
   (global-set-key (kbd "M-C-/") 'company-complete)
+  (global-set-key (kbd "M-C-'") 'company-yasnippet)
   (when (maybe-require-package 'company-quickhelp)
     (add-hook 'after-init-hook 'company-quickhelp-mode))
 

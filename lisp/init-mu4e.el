@@ -30,7 +30,7 @@
      ;; smtp
      (smtpmail-stream-type starttls)
      (smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil)))
-     (smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
+     (smtpmail-auth-credentials (expand-file-name "~/.authinfo.info"))
      (smtpmail-default-smtp-server "smtp.gmail.com")
      (smtpmail-smtp-server "smtp.gmail.com")
      (smtpmail-smtp-service 587))
@@ -44,7 +44,7 @@
      ;; smtp
      (smtpmail-stream-type starttls)
      (smtpmail-starttls-credentials '(("smtp.partner.outlook.cn" 587 nil nil)))
-     (smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
+     (smtpmail-auth-credentials (expand-file-name "~/.authinfo.info"))
      (smtpmail-default-smtp-server "smtp.partner.outlook.cn")
      (smtpmail-smtp-service 587)
      )))

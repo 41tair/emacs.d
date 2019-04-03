@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: python debug print
+# key: python-debug
+# --
+print "byron-print-debug"
+print ""
