@@ -79,4 +79,6 @@
 ;;(setq socks-server '("Default server" "127.0.0.1" 1086 5))
 ;;(require 'cc-mode)
 
+(require 'groovy-mode)
+(add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
 (provide 'init-kuma)
