@@ -18,7 +18,7 @@
 
 (setq make-backup-files nil)
 
-(setq initial-scratch-message ";;Talk is cheapaaaaaaaaaaaaaaaaaaa")
+(setq initial-scratch-message ";;Talk is cheap Show me the code")
 
 (set-scroll-bar-mode nil)
 
@@ -49,7 +49,7 @@
 
 (setq visible-bell 0)
 
-(global-undo-tree-mode)
+;;(global-undo-tree-mode)
 
 ;; (with-eval-after-load "magit-fetch"
 ;; (magit-define-popup-switch
@@ -63,6 +63,6 @@
 ;;(setq socks-server '("Default server" "127.0.0.1" 1086 5))
 ;;(require 'cc-mode)
 
-(require 'groovy-mode)
-(add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
+;; (require 'groovy-mode)
+;; (add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
 (provide 'init-kuma)
