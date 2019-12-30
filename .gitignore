@@ -9,3 +9,4 @@ elpa-26.1/*
 tramp
 org-clock-save.el
 *.dat
+/elpa-26.3/

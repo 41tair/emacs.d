@@ -26,7 +26,7 @@
 
 (defun insertsshkey (string)
   "Insert ssh key"
-  (interactive "sInsert ssh key")
+  (interactive "Insert ssh key")
   (insert "mkdir -p ~/.ssh;touch ~/.ssh/authorized_keys;echo ''>> ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys")
   (term-send-input))
 
@@ -49,7 +49,7 @@
 
 (setq visible-bell 0)
 
-;;(global-undo-tree-mode)
+(global-undo-tree-mode)
 
 ;; (with-eval-after-load "magit-fetch"
 ;; (magit-define-popup-switch
@@ -58,11 +58,4 @@
 
 
 (show-paren-mode t)
-
-;;(setq url-gateway-method 'socks)
-;;(setq socks-server '("Default server" "127.0.0.1" 1086 5))
-;;(require 'cc-mode)
-
-;; (require 'groovy-mode)
-;; (add-to-list 'auto-mode-alist '("Jenkinsfile$" . groovy-mode))
 (provide 'init-kuma)

@@ -10,18 +10,18 @@
 (require 'init-utils)
 (require 'init-elpa)
 (require 'init-kuma)
+(require 'init-themes)
+(require 'init-ivy)
 ;;(require 'init-term)
 ;;(require 'init-csv)
 ;; (require 'init-dired)
-(require 'init-docker)
+;;(require 'init-docker)
 ;; (require 'init-company)
-;; (require 'init-ivy)
 ;; (require 'init-python)
 ;; (require 'init-flycheck)
 ;; (require 'init-flyspell)
 ;; (require 'init-org)
 ;; ;;(require 'init-session)
-;; (require 'init-themes)
 ;; (require 'init-ibuffer)
 ;; (require 'init-exec-path)
 ;; (require 'init-markdown)
@@ -31,6 +31,9 @@
 ;; (require 'init-jenkins)
 ;; (require 'init-org-export)
 ;;(require 'init-dev)
+(provide 'init)
+;;(put 'downcase-region 'disabled nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -42,14 +45,10 @@
     ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(package-selected-packages
    (quote
-    (groovy-mode lua-mode jenkins highlight-parentheses guru-mode go-guru mu4e-alert evil-mu4e nginx-mode company-go go-mode org-jira zenburn-theme undo-tree jedi 0blayout company-jedi flycheck-color-mode-line flycheck company-anaconda anaconda-mode pip-requirements ivy-xref projectile counsel ivy-historian diminish ivy company docker-compose-mode dockerfile-mode docker diff-hl diredfl csv-mode ag magit sr-speedbar fullframe))))
+    (ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq magit-popup magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(provide 'init)
-(put 'downcase-region 'disabled nil)
-
