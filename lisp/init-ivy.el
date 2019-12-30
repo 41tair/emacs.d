@@ -17,7 +17,7 @@
     (dolist (k '("C-j" "C-RET"))
       (define-key ivy-minibuffer-map (kbd k) #'ivy-immediate-done))
 
-    (define-key ivy-minibuffer-map (kbd "<up>") #'ivy-previous-line-or-history)
+;;    (define-key ivy-minibuffer-map (kbd "<up>") #'ivy-previous-line-or-history)
 
     (when (maybe-require-package 'diminish)
       (diminish 'ivy-mode)))
