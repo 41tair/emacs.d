@@ -10,3 +10,5 @@ tramp
 org-clock-save.el
 *.dat
 /elpa-26.3/
+.emacs.desktop
+elpa/*

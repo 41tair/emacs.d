@@ -45,7 +45,7 @@
     ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq magit-popup magit))))
+    (helm-ag exec-path-from-shell ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq go-mode magit-popup magit))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

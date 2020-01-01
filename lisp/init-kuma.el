@@ -46,6 +46,7 @@
 (global-set-key [f5] 'kmacro-start-macro)
 (global-set-key [f6] 'kmacro-end-and-call-macro)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
+(set-default-font "Monaco 15")
 
 (setq visible-bell 0)
 
