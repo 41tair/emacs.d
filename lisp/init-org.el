@@ -364,7 +364,4 @@ typical word processor."
      (sql . nil)
      (sqlite . t))))
 
-
-(setq org-agenda-files
-(list "~/Documents/org/GTD.org"))
 (provide 'init-org)

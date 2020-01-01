@@ -34,6 +34,7 @@
 
 (global-set-key (kbd "C->") 'other-window) ;; set hotkey change window
 (global-set-key "\C-ca" 'org-agenda)
+(setq org-agenda-files (list "~/Documents/org/GTD.org"))
 ;; Magit shortcut
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
