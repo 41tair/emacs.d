@@ -8,6 +8,8 @@
 
 (setq inhibit-startup-message t) ;; hide the startup message
 
+(add-hook 'after-init-hook 'global-company-mode)
+
 (display-time-mode t)
 (setq display-time-24hr-format 1)
 

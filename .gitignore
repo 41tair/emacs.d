@@ -12,3 +12,6 @@ org-clock-save.el
 /elpa-26.3/
 .emacs.desktop
 elpa/*
+/.python-environments/
+/.lsp-session-v1
+/anaconda-mode/
