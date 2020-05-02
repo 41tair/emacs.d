@@ -23,7 +23,7 @@
 
 (if (eq system-type 'darwin)
     (setq python3Dic "/usr/local/bin")
-  (setq python3Dic "/usr/bin"))
+  (setq python3Dic "/usr/local/bin"))
 
 
 (defun my-python-mode-config ()
@@ -40,7 +40,7 @@
    python-shell-completion-native-enable nil
    py-python-command (concat python3Dic "/python3")
    exec-path (append exec-path '(python3Dic))
-   python-shell-completion-native-disabled-interpreters '("python")))
+   python-shell-completion-native-disabled-interpreters '("python3")))
 
 ;; 在每次进入python-mode的时候加载自定义的python开发环境
 (add-hook 'python-mode-hook 'my-python-mode-config)
@@ -64,6 +64,14 @@
     (setq jedi:environment-root "jedi")))
 
 (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+(use-package elpy
+  :ensure t
+  :commands elpy-enable
+  :hook
+  (python-mode . elpy-mode))
+
+(setq elpy-rpc-virtualenv-path 'current)
+(setq elpy-rpc-python-command "/usr/local/bin/python3")
 (use-package flycheck
   :ensure t  
   :hook
