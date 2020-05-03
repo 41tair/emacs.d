@@ -26,6 +26,7 @@
 ;; (require 'init-ibuffer)
 (require 'init-exec-path)
 (require 'init-lua)
+(require 'init-ivypos)
 ;; (require 'init-markdown)
 ;; ;;(require 'init-mu4e)
 ;; (require 'init-yasnippet)
@@ -47,7 +48,7 @@
     ("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default)))
  '(package-selected-packages
    (quote
-    (lua-mode exec-path-from-shell company-anaconda anaconda-mode pip-requirements ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq elpy nginx-mode docker-compose-mode dockerfile-mode protobuf-mode py-autopep8 flycheck company-jedi lsp-mode go-guru ag helm-ag go-mode magit-popup magit)))
+    (lua-mode exec-path-from-shell company-anaconda anaconda-mode pip-requirements ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq ivy-posframe elpy nginx-mode docker-compose-mode dockerfile-mode protobuf-mode py-autopep8 flycheck company-jedi lsp-mode go-guru ag helm-ag go-mode magit-popup magit)))
  '(python-shell-interpreter "/usr/bin/python3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
