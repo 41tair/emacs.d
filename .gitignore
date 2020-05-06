@@ -15,3 +15,4 @@ elpa/*
 /.python-environments/
 /.lsp-session-v1
 /anaconda-mode/
+*.jar
