@@ -59,6 +59,8 @@
 ;;  'magit-fetch-popup
 ;;  ?t "Fetch tags from remote" "--tags"))
 
+(setq url-gateway-method 'socks)
+(setq socks-server '("Default server" "127.0.0.1" 1081 5))
 
 (show-paren-mode t)
 (provide 'init-kuma)
