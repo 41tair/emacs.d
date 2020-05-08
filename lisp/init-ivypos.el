@@ -11,18 +11,23 @@
           (min-height .,ivy-height)
           (internal-border-width . 10)))
 
-;; (setq ivy-posframe-parameters
-;;       '((left-fringe . 8)
-;;         (right-fringe . 8)))
+(defun window-top-mac (info)
+  (cons (/ (- (plist-get info :parent-frame-width)
+              (plist-get info :posframe-width))
+           2)
+	35
+	))
 
-;; (defun ivy-posframe-display-at-current-top (str)
-;;   (ivy-posframe--display str #')
-;;   )
+(defun ivy-posframe-display-at-window-top-mac (str)
+  (ivy-posframe--display str #'window-top-mac)
+  )
+
+
 
 (setq ivy-posframe-display-functions-alist
       '((swiper          . ivy-posframe-display-at-point)
         (complete-symbol . ivy-posframe-display-at-frame-top-center)
-        (counsel-M-x     . ivy-posframe-display-at-frame-top-center)
+        (counsel-M-x     . ivy-posframe-display-at-window-top-mac)
         (t               . ivy-posframe-display)))
 (ivy-posframe-mode 1)
 
