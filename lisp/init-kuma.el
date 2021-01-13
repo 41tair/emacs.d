@@ -44,7 +44,7 @@
 
 (global-set-key [f12] 'goto-line)
 (global-set-key [f9] 'insertsshkey)
-(global-set-key [f3] 'execute-extended-command)
+(global-set-key [f3] 'smex)
 (global-set-key [f4] 'ag-project)
 (global-set-key [f5] 'kmacro-start-macro)
 (global-set-key [f6] 'kmacro-end-and-call-macro)
@@ -52,15 +52,27 @@
 (set-default-font "Monaco 15" nil t)
 (setq visible-bell 0)
 
+(global-set-key (kbd "C-x p") 'leetcode-problems)
 (global-undo-tree-mode)
 
+
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+					; when Smex is auto-initialized on its first run.
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 ;; (with-eval-after-load "magit-fetch"
 ;; (magit-define-popup-switch
 ;;  'magit-fetch-popup
 ;;  ?t "Fetch tags from remote" "--tags"))
 
-(setq url-gateway-method 'socks)
-(setq socks-server '("Default server" "127.0.0.1" 1081 5))
+;; (setq url-gateway-method 'socks)
+;; (setq socks-server '("Default server" "127.0.0.1" 1081 5))
 
+
+;; (setq url-using-proxy t)
+;; (setq url-proxy-services '(("http" . "127.0.0.1:8001")))
 (show-paren-mode t)
 (provide 'init-kuma)
