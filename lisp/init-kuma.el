@@ -75,4 +75,16 @@
 ;; (setq url-using-proxy t)
 ;; (setq url-proxy-services '(("http" . "127.0.0.1:8001")))
 (show-paren-mode t)
+
+
+(use-package lsp-python-ms
+  :ensure t
+  :init (setq lsp-python-ms-auto-install-server t)
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-python-ms)
+                          (lsp))))  ; or lsp-deferred
+(setq lsp-python-ms-executable
+      "/Users/byronwang/Documents/Mac/python-language-server/output/bin/Release/osx.10.15-x64/publish/Microsoft.Python.LanguageServer")
+(setq lsp-python-ms-python-executable "/usr/local/bin/python3")
+
 (provide 'init-kuma)

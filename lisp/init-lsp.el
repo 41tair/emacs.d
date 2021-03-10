@@ -44,4 +44,8 @@
   :commands yas-minor-mode
   :hook (go-mode . yas-minor-mode))
 
+(setq lsp-register-custom-settings
+      '(("gopls.completeUnimported" t t)
+	("gopls.staticcheck" t t)))
+
 (provide 'init-lsp)
