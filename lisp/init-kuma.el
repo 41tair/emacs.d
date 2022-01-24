@@ -54,7 +54,7 @@
 
 (global-set-key (kbd "C-x p") 'leetcode-problems)
 (global-undo-tree-mode)
-
+(window-numbering-mode)
 
 (require 'smex) ; Not needed if you use package.el
 (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
