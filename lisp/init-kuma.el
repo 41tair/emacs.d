@@ -2,7 +2,7 @@
 (global-hl-line-mode t)
 
 (require 'cc-mode)
-(global-linum-mode t) ;; enable line numbers globally
+;;(global-linum-mode t) ;; enable line numbers globally
 (column-number-mode 1)
 
 
@@ -49,7 +49,7 @@
 (global-set-key [f5] 'kmacro-start-macro)
 (global-set-key [f6] 'kmacro-end-and-call-macro)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
-(set-default-font "Monaco 15" nil t)
+;;(set-default-font "Monaco 15" nil t)
 (setq visible-bell 0)
 
 (global-set-key (kbd "C-x p") 'leetcode-problems)
