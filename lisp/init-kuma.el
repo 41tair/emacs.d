@@ -54,6 +54,7 @@
 
 (global-set-key (kbd "C-x p") 'leetcode-problems)
 (global-undo-tree-mode)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (window-numbering-mode)
 
 (require 'smex) ; Not needed if you use package.el
@@ -77,14 +78,14 @@
 (show-paren-mode t)
 
 
-(use-package lsp-python-ms
-  :ensure t
-  :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-python-ms)
-                          (lsp))))  ; or lsp-deferred
-(setq lsp-python-ms-executable
-      "/Users/byronwang/Documents/Mac/python-language-server/output/bin/Release/osx.10.15-x64/publish/Microsoft.Python.LanguageServer")
-(setq lsp-python-ms-python-executable "/usr/local/bin/python3")
+;; (use-package lsp-python-ms
+;;   :ensure t
+;;   :init (setq lsp-python-ms-auto-install-server t)
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-python-ms)
+;;                           (lsp))))  ; or lsp-deferred
+;; (setq lsp-python-ms-executable
+;;       "/Users/byronwang/Documents/Mac/python-language-server/output/bin/Release/osx.10.15-x64/publish/Microsoft.Python.LanguageServer")
+;; (setq lsp-python-ms-python-executable "/usr/local/bin/python3")
 
 (provide 'init-kuma)
