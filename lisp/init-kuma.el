@@ -5,6 +5,7 @@
 ;;(global-linum-mode t) ;; enable line numbers globally
 (column-number-mode 1)
 
+(global-display-line-numbers-mode 1)
 
 (setq inhibit-startup-message t) ;; hide the startup message
 
