@@ -51,6 +51,11 @@
 (global-set-key [f6] 'kmacro-end-and-call-macro)
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
 ;;(set-default-font "Monaco 15" nil t)
+(set-face-attribute 'default nil
+                    :family "Monaco 15"
+                    :height 230
+	            :weight 'normal
+                    :width 'normal)
 (setq visible-bell 0)
 
 (global-set-key (kbd "C-x p") 'leetcode-problems)
