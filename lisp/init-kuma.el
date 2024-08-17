@@ -52,8 +52,8 @@
 (fset 'yes-or-no-p 'y-or-n-p) ;; y or n instead of yes or no
 ;;(set-default-font "Monaco 15" nil t)
 (set-face-attribute 'default nil
-                    :family "Monaco 15"
-                    :height 230
+                    :family "Monaco"
+                    :height 190
 	            :weight 'normal
                     :width 'normal)
 (setq visible-bell 0)
