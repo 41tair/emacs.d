@@ -16,3 +16,7 @@ elpa/*
 /.lsp-session-v1
 /anaconda-mode/
 *.jar
+/undo/
+/smex-items
+/network-security.data
+/eshell/
