@@ -57,6 +57,7 @@
 	            :weight 'normal
                     :width 'normal)
 (setq visible-bell 0)
+(setq ring-bell-function 'ignore)
 
 (global-set-key (kbd "C-x p") 'leetcode-problems)
 (global-undo-tree-mode)

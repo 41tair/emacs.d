@@ -48,10 +48,6 @@
       '(("gopls.completeUnimported" t t)
 	("gopls.staticcheck" t t)))
 
-(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+
 
 (provide 'init-lsp)

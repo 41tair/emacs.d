@@ -64,6 +64,7 @@
     (setq jedi:environment-root "jedi")))
 
 (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+
 (use-package elpy
   :ensure t
   :commands elpy-enable
@@ -78,7 +79,13 @@
   (progn
     (python-mode . flycheck-mode)))
 
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+(add-hook 'python-mode-hook 'py-autopep8-mode)
 (setq py-autopep8-options '("--max-line-length=120"))
+
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
 
 (provide 'init-python)
