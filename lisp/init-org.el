@@ -22,8 +22,7 @@
 
 ;;; Code:
 
-(when *is-a-mac*
-  (maybe-require-package 'grab-mac-link))
+(maybe-require-package 'grab-mac-link)
 
 (maybe-require-package 'org-cliplink)
 
@@ -301,8 +300,7 @@ typical word processor."
   (define-key org-clock-mode-line-map [header-line mouse-1] 'org-clock-menu))
 
 
-
-(when (and *is-a-mac* (file-directory-p "/Applications/org-clock-statusbar.app"))
+(when (file-directory-p "/Applications/org-clock-statusbar.app")
   (add-hook 'org-clock-in-hook
             (lambda () (call-process "/usr/bin/osascript" nil 0 nil "-e"
                                 (concat "tell application \"org-clock-statusbar\" to clock in \"" org-clock-current-task "\""))))
@@ -311,20 +309,15 @@ typical word processor."
                                 "tell application \"org-clock-statusbar\" to clock out"))))
 
 
-
 ;; TODO: warn about inconsistent items, e.g. TODO inside non-PROJECT
 ;; TODO: nested projects!
 
-
-
 ;;; Archiving
 
 (setq org-archive-mark-done nil)
 (setq org-archive-location "%s_archive::* Archive")
 
 
-
-
 
 (require-package 'org-pomodoro)
 (setq org-pomodoro-keep-killed-pomodoro-time t)
@@ -355,9 +348,8 @@ typical word processor."
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-M-<up>") 'org-up-element)
-  (when *is-a-mac*
     (define-key org-mode-map (kbd "M-h") nil)
-    (define-key org-mode-map (kbd "C-c g") 'grab-mac-link)))
+    (define-key org-mode-map (kbd "C-c g") 'grab-mac-link))
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages

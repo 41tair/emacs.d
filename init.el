@@ -50,7 +50,7 @@
  '(custom-safe-themes
    '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default))
  '(package-selected-packages
-   '(ledger-mode lua-mode exec-path-from-shell org-pomodoro writeroom-mode org-cliplink grab-mac-link company-anaconda anaconda-mode pip-requirements ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq yaml-mode python-mode lsp-pyright company-go window-number htmlize window-numbering json-mode smex transient tablist ivy-posframe elpy nginx-mode docker-compose-mode dockerfile-mode protobuf-mode py-autopep8 flycheck company-jedi lsp-mode go-guru ag helm-ag go-mode magit-popup magit))
+   '(lua-mode exec-path-from-shell org-pomodoro writeroom-mode org-cliplink grab-mac-link company-anaconda anaconda-mode pip-requirements ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq ledger-mode yaml-mode python-mode lsp-pyright company-go window-number htmlize window-numbering json-mode smex transient tablist ivy-posframe elpy nginx-mode docker-compose-mode dockerfile-mode protobuf-mode py-autopep8 flycheck company-jedi lsp-mode go-guru ag helm-ag go-mode magit-popup magit))
  '(python-shell-interpreter "/usr/bin/python3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
