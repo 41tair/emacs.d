@@ -16,4 +16,4 @@
               auto-mode-alist))
 
 
-(provide 'init-pythonnew)
+(provide 'init-python)
