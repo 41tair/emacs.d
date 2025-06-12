@@ -28,6 +28,7 @@
 (require 'init-ibuffer)
 (require 'init-exec-path)
 (require 'init-lua)
+(require 'init-rust)
 ;;(add-to-list 'load-path (expand-file-name "leetcode.el" "/Users/byronwang/Documents/lisp-project"))
 ;;(require 'leetcode)
 ;;(require 'init-ivypos)
