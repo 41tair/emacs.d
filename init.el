@@ -5,7 +5,9 @@
 ;;(package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(setq exec-path (cons "/usr/local/bin" exec-path))
+(setq exec-path (append (list (expand-file-name "~/.cargo/bin")
+                              "/usr/local/bin")
+                        exec-path))
 
 (require 'init-utils)
 (require 'init-elpa)
