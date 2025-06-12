@@ -6,7 +6,6 @@
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "GOPATH"))
 
-
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)

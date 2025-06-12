@@ -83,7 +83,10 @@
 ;; (setq url-using-proxy t)
 ;; (setq url-proxy-services '(("http" . "127.0.0.1:8001")))
 (show-paren-mode t)
-
+(require 'leetcode)
+(setq leetcode-prefer-language "python3")
+(setq leetcode-save-solutions t)
+(setq leetcode-directory "/Users/byron/Documents/leetcodepractice")
 
 ;; (use-package lsp-python-ms
 ;;   :ensure t
