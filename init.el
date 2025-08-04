@@ -38,6 +38,7 @@
 ;; (require 'init-erc)
 ;; (require 'init-org-export)
 ;;(require 'init-dev)
+(require 'init-claude)
 (provide 'init)
 ;;(put 'downcase-region 'disabled nil)
 
@@ -50,9 +51,22 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(sanityinc-tomorrow-bright))
  '(custom-safe-themes
-   '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" default))
+   '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28"
+     "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e"
+     default))
  '(package-selected-packages
-   '(lua-mode exec-path-from-shell ibuffer-vc org-pomodoro writeroom-mode org-cliplink grab-mac-link ivy-xref swiper projectile diminish counsel ivy-historian ivy dimmer color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized gnu-elpa-keyring-update fullframe seq multiple-cursors impatient-mode jinja2-mode caddyfile-mode leetcode yaml reformatter toml-mode ruff-format flymake-ruff pip-requirements company-anaconda anaconda-mode ledger-mode yaml-mode python-mode lsp-pyright company-go window-number htmlize window-numbering json-mode smex transient tablist ivy-posframe elpy nginx-mode docker-compose-mode dockerfile-mode protobuf-mode py-autopep8 flycheck company-jedi lsp-mode go-guru ag helm-ag go-mode magit-popup magit))
+   '(color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
+				     counsel diminish dimmer
+				     exec-path-from-shell fullframe
+				     gnu-elpa-keyring-update go-mode
+				     grab-mac-link ibuffer-vc ivy
+				     ivy-historian ivy-xref lua-mode
+				     magit org-cliplink org-pomodoro
+				     projectile py-autopep8
+				     python-mode seq swiper
+				     writeroom-mode))
+ '(package-vc-selected-packages
+   '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
  '(python-shell-interpreter "/usr/bin/python3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

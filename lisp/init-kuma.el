@@ -58,7 +58,7 @@
 (setq visible-bell 0)
 (setq ring-bell-function 'ignore)
 
-(global-set-key (kbd "C-x p") 'leetcode-problems)
+;;(global-set-key (kbd "C-x p") 'leetcode-problems)
 (global-undo-tree-mode)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 (window-numbering-mode)
@@ -82,10 +82,10 @@
 ;; (setq url-using-proxy t)
 ;; (setq url-proxy-services '(("http" . "127.0.0.1:8001")))
 (show-paren-mode t)
-(require 'leetcode)
-(setq leetcode-prefer-language "python3")
-(setq leetcode-save-solutions t)
-(setq leetcode-directory "/Users/byron/Documents/leetcodepractice")
+;;(require 'leetcode)
+;;(setq leetcode-prefer-language "python3")
+;;(setq leetcode-save-solutions t)
+;;(setq leetcode-directory "/Users/byron/Documents/leetcodepractice")
 
 ;; (use-package lsp-python-ms
 ;;   :ensure t
