@@ -95,6 +95,6 @@
 ;;                           (lsp))))  ; or lsp-deferred
 ;; (setq lsp-python-ms-executable
 ;;       "/Users/byronwang/Documents/Mac/python-language-server/output/bin/Release/osx.10.15-x64/publish/Microsoft.Python.LanguageServer")
-;; (setq lsp-python-ms-python-executable "/usr/local/bin/python3")
+;; (setq lsp-python-ms-python-executable "/usr/local/bin/python3"
 
 (provide 'init-kuma)

@@ -55,16 +55,12 @@
      "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e"
      default))
  '(package-selected-packages
-   '(color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-				     counsel diminish dimmer
-				     exec-path-from-shell fullframe
-				     gnu-elpa-keyring-update go-mode
-				     grab-mac-link ibuffer-vc ivy
-				     ivy-historian ivy-xref lua-mode
-				     magit org-cliplink org-pomodoro
-				     projectile py-autopep8
-				     python-mode seq swiper
-				     writeroom-mode))
+   '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
+	counsel diminish dimmer dockerfile-mode exec-path-from-shell
+	fullframe gnu-elpa-keyring-update go-mode grab-mac-link
+	ibuffer-vc ivy ivy-historian ivy-xref lua-mode magit
+	org-cliplink org-pomodoro pest-mode projectile py-autopep8
+	python-mode seq swiper writeroom-mode yaml-mode))
  '(package-vc-selected-packages
    '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
  '(python-shell-interpreter "/usr/bin/python3"))
@@ -74,3 +70,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'erase-buffer 'disabled nil)
