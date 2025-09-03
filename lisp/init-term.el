@@ -1,25 +1,38 @@
-(require 'multi-term)
-(setq multi-term-program "/bin/zsh")
+;; (require 'multi-term)
+;; (setq multi-term-program "/bin/zsh")
 
-(add-hook 'term-mode-hook
-          (lambda ()
-            (add-to-list 'term-bind-key-alist '("M-[" . multi-term-prev))
-            (add-to-list 'term-bind-key-alist '("M-]" . multi-term-next))))
+;; (add-hook 'term-mode-hook
+;;           (lambda ()
+;;             (add-to-list 'term-bind-key-alist '("M-[" . multi-term-prev))
+;;             (add-to-list 'term-bind-key-alist '("M-]" . multi-term-next))))
 
-(custom-set-variables
+;; (custom-set-variables
  
-     '(term-default-bg-color "#000000")        ;; background color (black)
+;;      '(term-default-bg-color "#000000")        ;; background color (black)
  
-     '(term-default-fg-color "#dddd00"))       ;; foreground color (yellow)
+;;      '(term-default-fg-color "#dddd00"))       ;; foreground color (yellow)
 
 
-(defun term-send-esc ()
-  "Send ESC in term mode."
+;; (defun term-send-esc ()
+;;   "Send ESC in term mode."
+;;   (interactive)
+;;   (term-send-raw-string "\e"))
+
+;; (add-to-list 'term-bind-key-alist '("C-x g"))
+;; (add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-escape))
+;; (add-to-list 'term-bind-key-alist '("C-r" . isearch-backward))
+
+(use-package vterm
+    :ensure t)
+
+(defun my-force-new-vterm-session ()
+  "Create a new vterm session by calling vterm with a prefix argument."
   (interactive)
-  (term-send-raw-string "\e"))
+  (vterm '(4)))
 
-(add-to-list 'term-bind-key-alist '("C-x g"))
-(add-to-list 'term-bind-key-alist '("C-c C-e" . term-send-escape))
-(add-to-list 'term-bind-key-alist '("C-r" . isearch-backward))
+(global-set-key (kbd "C-c C-t") #'my-force-new-vterm-session)
 
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (define-key vterm-mode-map (kbd "C-c C-t") nil)))
 (provide 'init-term)

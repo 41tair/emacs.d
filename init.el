@@ -15,7 +15,7 @@
 (require 'init-themes)
 (require 'init-ivy)
 (require 'init-lsp)
-;;(require 'init-term)
+(require 'init-term)
 ;;(require 'init-csv)
 ;; (require 'init-dired)
 ;;(require 'init-docker)
@@ -63,7 +63,9 @@
 	python-mode seq swiper writeroom-mode yaml-mode))
  '(package-vc-selected-packages
    '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
- '(python-shell-interpreter "/usr/bin/python3"))
+ '(python-shell-interpreter "/usr/bin/python3")
+ '(term-default-bg-color "#000000")
+ '(term-default-fg-color "#dddd00"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
