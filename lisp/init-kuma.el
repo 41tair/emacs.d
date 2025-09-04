@@ -29,8 +29,8 @@
 
 (defun insertsshkey (string)
   "Insert ssh key"
-  (interactive "Insert ssh key")
-  (insert "mkdir -p ~/.ssh;touch ~/.ssh/authorized_keys;echo ''>> ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys")
+  (interactive "sInsert ssh key: ")
+  (insert (format "mkdir -p ~/.ssh;touch ~/.ssh/authorized_keys;echo '%s' >> ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys" string))
   (term-send-input))
 
 ;;----------global-key------------
@@ -96,5 +96,5 @@
 ;; (setq lsp-python-ms-executable
 ;;       "/Users/byronwang/Documents/Mac/python-language-server/output/bin/Release/osx.10.15-x64/publish/Microsoft.Python.LanguageServer")
 ;; (setq lsp-python-ms-python-executable "/usr/local/bin/python3"
-
+;;(require 'linear-emacs)
 (provide 'init-kuma)
