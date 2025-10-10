@@ -30,9 +30,9 @@
   (interactive)
   (vterm '(4)))
 
-(global-set-key (kbd "C-c C-t") #'my-force-new-vterm-session)
+(global-set-key [f8] 'my-force-new-vterm-session)
 
-(add-hook 'vterm-mode-hook
-          (lambda ()
-            (define-key vterm-mode-map (kbd "C-c C-t") nil)))
+;; (add-hook 'vterm-mode-hook
+;;           (lambda ()
+;;             (define-key vterm-mode-map (kbd "C-c C-t") nil)))
 (provide 'init-term)

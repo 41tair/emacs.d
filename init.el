@@ -34,11 +34,11 @@
 ;;(require 'init-ivypos)
 ;; (require 'init-markdown)
 ;; ;;(require 'init-mu4e)
-;; (require 'init-yasnippet)
+(require 'init-yasnippet)
 ;; (require 'init-erc)
 ;; (require 'init-org-export)
 ;;(require 'init-dev)
-(require 'init-claude)
+;;(require 'init-claude)
 (provide 'init)
 ;;(put 'downcase-region 'disabled nil)
 
@@ -60,7 +60,7 @@
 	fullframe gnu-elpa-keyring-update go-mode grab-mac-link
 	ibuffer-vc ivy ivy-historian ivy-xref lua-mode magit
 	org-cliplink org-pomodoro pest-mode projectile py-autopep8
-	python-mode seq swiper writeroom-mode yaml-mode))
+	python-mode seq swiper writeroom-mode yaml-mode yasnippet))
  '(package-vc-selected-packages
    '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
  '(python-shell-interpreter "/usr/bin/python3")
