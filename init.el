@@ -35,6 +35,7 @@
 ;; (require 'init-markdown)
 ;; ;;(require 'init-mu4e)
 (require 'init-yasnippet)
+(require 'init-flow)
 ;; (require 'init-erc)
 ;; (require 'init-org-export)
 ;;(require 'init-dev)

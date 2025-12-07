@@ -23,7 +23,9 @@
 ;; (add-to-list 'term-bind-key-alist '("C-r" . isearch-backward))
 
 (use-package vterm
-    :ensure t)
+  :ensure t
+  :config
+  (setq vterm-shell "/opt/homebrew/bin/zsh"))
 
 (defun my-force-new-vterm-session ()
   "Create a new vterm session by calling vterm with a prefix argument."

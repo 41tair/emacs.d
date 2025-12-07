@@ -25,6 +25,7 @@
 
 (set-scroll-bar-mode nil)
 
+(setq ns-use-native-fullscreen nil)
 (put 'downcase-region 'disabled nil)
 
 (defun insertsshkey (string)
