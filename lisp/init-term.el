@@ -1,3 +1,8 @@
+;; -*- lexical-binding: t -*-
+;;; init-term.el --- Terminal configuration -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 ;; (require 'multi-term)
 ;; (setq multi-term-program "/bin/zsh")
 
@@ -38,3 +43,4 @@
 ;;           (lambda ()
 ;;             (define-key vterm-mode-map (kbd "C-c C-t") nil)))
 (provide 'init-term)
+;;; init-term.el ends here

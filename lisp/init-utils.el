@@ -1,3 +1,8 @@
+;; -*- lexical-binding: t -*-
+;;; init-utils.el --- Utility functions -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (if (fboundp 'with-eval-after-load)
     (defalias 'after-load 'with-eval-after-load)
   (defmacro after-load (feature &rest body)
@@ -74,4 +79,5 @@
 
 
 (provide 'init-utils)
+;;; init-utils.el ends here
 

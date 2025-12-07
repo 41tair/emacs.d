@@ -1,3 +1,8 @@
+;; -*- lexical-binding: t -*-
+;;; init-exec-path.el --- PATH configuration -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require-package 'exec-path-from-shell)
 
 (after-load 'exec-path-from-shell
@@ -17,3 +22,4 @@
 
 (setq exec-path-from-shell-check-startup-files nil) 
 (provide 'init-exec-path)
+;;; init-exec-path.el ends here
