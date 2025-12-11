@@ -41,6 +41,18 @@
 
 (global-set-key [f8] 'my-force-new-vterm-session)
 
+(with-eval-after-load 'vterm
+  (setq vterm-key-map-alist
+        (append vterm-key-map-alist
+                '(("M-<left>" . "\e[1;3D")    ; Alt+Left  (跳词)
+                  ("M-<right>" . "\e[1;3C")   ; Alt+Right (跳词)
+                  ("M-<up>"    . "\e[1;3A")   ; Alt+Up
+                  ("M-<down>"  . "\e[1;3B")   ; Alt+Down
+                  ("M-<backspace>" . "\x17")  ; Alt+Backspace (删除前词)
+                  ("M-DEL"     . "\x17")      ; 同上 (适配不同键盘)
+                  ("M-d"       . "\ed")       ; Alt+d (删除后词)
+                  ("C-<left>"  . "\e[1;5D")   ; Ctrl+Left
+                  ("C-<right>" . "\e[1;5C"))))) ; Ctrl+Right
 ;; (add-hook 'vterm-mode-hook
 ;;           (lambda ()
 ;;             (define-key vterm-mode-map (kbd "C-c C-t") nil)))
