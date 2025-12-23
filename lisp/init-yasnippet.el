@@ -3,8 +3,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(require-package 'yasnippet)
-(require 'yasnippet)
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
+(setq lsp-enable-snippet t)
 ;; make Ctrl-c k the only trigger key for yas
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)

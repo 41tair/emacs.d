@@ -12,13 +12,19 @@
  '(custom-enabled-themes '(sanityinc-tomorrow-bright))
  '(custom-safe-themes
    '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28"
+     "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e"
      default))
  '(package-selected-packages
-   '(color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-				     counsel diminish dimmer fullframe
-				     gnu-elpa-keyring-update ivy
-				     ivy-historian ivy-xref projectile
-				     seq swiper)))
+   '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
+	counsel diminish dimmer dockerfile-mode exec-path-from-shell
+	fullframe gnu-elpa-keyring-update go-mode grab-mac-link
+	ibuffer-vc ivy ivy-historian ivy-xref lua-mode magit
+	org-cliplink org-pomodoro pest-mode projectile py-autopep8
+	python-mode seq swiper winum writeroom-mode yaml-mode
+	yasnippet))
+ '(python-shell-interpreter "/usr/bin/python3")
+ '(term-default-bg-color "#000000")
+ '(term-default-fg-color "#dddd00"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

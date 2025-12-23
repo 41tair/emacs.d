@@ -13,6 +13,7 @@
 
 (require 'init-utils)
 (require 'init-elpa)
+(require 'init-exec-path)
 (require 'init-kuma)
 (require 'init-themes)
 (require 'init-ivy)
@@ -21,7 +22,6 @@
 (require 'init-python)
 (require 'init-org)
 (require 'init-ibuffer)
-(require 'init-exec-path)
 (require 'init-lua)
 (require 'init-rust)
 (require 'init-yasnippet)
@@ -31,32 +31,3 @@
   (load custom-file))
 
 (provide 'init)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(sanityinc-tomorrow-bright))
- '(custom-safe-themes
-   '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28"
-     "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e"
-     default))
- '(package-selected-packages
-   '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-	counsel diminish dimmer dockerfile-mode exec-path-from-shell
-	fullframe gnu-elpa-keyring-update go-mode grab-mac-link
-	ibuffer-vc ivy ivy-historian ivy-xref lua-mode magit
-	org-cliplink org-pomodoro pest-mode projectile py-autopep8
-	python-mode seq swiper winum writeroom-mode yaml-mode
-	yasnippet))
- '(package-vc-selected-packages
-   '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
- '(python-shell-interpreter "/usr/bin/python3")
- '(term-default-bg-color "#000000")
- '(term-default-fg-color "#dddd00"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
