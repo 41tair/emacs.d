@@ -32,7 +32,11 @@
   :hook (vterm-mode . (lambda ()
                         (display-line-numbers-mode -1)))
   :config
-  (setq vterm-shell "/opt/homebrew/bin/zsh"))
+  (setq vterm-shell
+        (cond
+         ((eq system-type 'darwin) "/opt/homebrew/bin/zsh")
+         ((eq system-type 'gnu/linux) "/usr/bin/zsh")
+         (t vterm-shell))))
 
 (defun my-force-new-vterm-session ()
   "Create a new vterm session by calling vterm with a prefix argument."
