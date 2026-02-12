@@ -8,7 +8,7 @@
   :custom (lsp-pyright-langserver-command "pyright") ;; or basedpyright
   :hook (python-mode . (lambda ()
                           (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
+                          (lsp-deferred))))
 
 (add-hook 'python-mode-hook 'py-autopep8-mode)
 (setq py-autopep8-options '("--max-line-length=120"))

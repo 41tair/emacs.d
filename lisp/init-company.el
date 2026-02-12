@@ -5,7 +5,6 @@
 (add-to-list 'completion-styles 'initials t)
 
 (when (maybe-require-package 'company)
-  (add-hook 'after-init-hook 'global-company-mode)
   (after-load 'company
     (diminish 'company-mode "CMP")
     (define-key company-mode-map (kbd "M-/") 'company-complete)
@@ -17,7 +16,8 @@
   (global-set-key (kbd "M-C-/") 'company-complete)
   (global-set-key (kbd "M-C-'") 'company-yasnippet)
   (when (maybe-require-package 'company-quickhelp)
-    (add-hook 'after-init-hook 'company-quickhelp-mode))
+    (after-load 'company
+      (company-quickhelp-mode 1)))
 
   (defun sanityinc/local-push-company-backend (backend)
     "Add BACKEND to a buffer-local version of `company-backends'."

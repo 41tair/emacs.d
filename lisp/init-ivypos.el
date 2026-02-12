@@ -5,11 +5,11 @@
 
 
 (setq ivy-fixed-height-minibuffer nil
-        ;; ivy-display-function #'ivy-posframe-display-at-point
-        ivy-posframe-parameters
-        '((min-width . 90)
-          (min-height .,ivy-height)
-          (internal-border-width . 10)))
+      ;; ivy-display-function #'ivy-posframe-display-at-point
+      ivy-posframe-parameters
+      `((min-width . 90)
+        (min-height . ,ivy-height)
+        (internal-border-width . 10)))
 
 (defun window-top-mac (info)
   (cons (/ (- (plist-get info :parent-frame-width)

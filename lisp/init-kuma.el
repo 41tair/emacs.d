@@ -7,7 +7,13 @@
 
 (require 'cc-mode)
 (column-number-mode 1)
-(global-display-line-numbers-mode 1)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(dolist (mode-hook '(org-mode-hook
+                     term-mode-hook
+                     shell-mode-hook
+                     eshell-mode-hook
+                     vterm-mode-hook))
+  (add-hook mode-hook (lambda () (display-line-numbers-mode -1))))
 
 (setq inhibit-startup-message t)
 
@@ -19,8 +25,6 @@
 (setq make-backup-files nil)
 
 (setq initial-scratch-message ";;Talk is cheap Show me the code")
-
-(set-scroll-bar-mode nil)
 
 ;;(setq ns-use-native-fullscreen nil)
 (put 'downcase-region 'disabled nil)

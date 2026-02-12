@@ -11,9 +11,9 @@
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   ;; gopls 配置
-  (setq lsp-register-custom-settings
-        '(("gopls.completeUnimported" t t)
-          ("gopls.staticcheck" t t))))
+  (lsp-register-custom-settings
+   '(("gopls.completeUnimported" t t)
+     ("gopls.staticcheck" t t))))
 
 ;; LSP UI - 提供更好的界面
 (use-package lsp-ui
@@ -25,8 +25,8 @@
   :ensure t
   :hook (after-init . global-company-mode)
   :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 1))
+  (setq company-idle-delay 0.2)
+  (setq company-minimum-prefix-length 2))
 
 ;; Which-key - 显示快捷键提示
 (use-package which-key

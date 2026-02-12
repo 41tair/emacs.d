@@ -229,7 +229,7 @@ typical word processor."
                         (org-agenda-skip-function
                          '(lambda ()
                             (or (org-agenda-skip-subtree-if 'todo '("PROJECT" "HOLD" "WAITING" "DELEGATED"))
-                                (org-agenda-skip-subtree-if 'nottododo '("TODO")))))
+                                (org-agenda-skip-subtree-if 'nottodo '("TODO")))))
                         (org-tags-match-list-sublevels t)
                         (org-agenda-sorting-strategy
                          '(category-keep))))
@@ -351,30 +351,38 @@ typical word processor."
     (define-key org-mode-map (kbd "M-h") nil)
     (define-key org-mode-map (kbd "C-c g") 'grab-mac-link))
 
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   (seq-filter
-    (lambda (pair)
-      (locate-library (concat "ob-" (symbol-name (car pair)))))
-    '((R . t)
-      (ditaa . t)
-      (dot . t)
-      (emacs-lisp . t)
-      (gnuplot . t)
-      (haskell . nil)
-      (latex . t)
-      (ledger . t)
-      (ocaml . nil)
-      (octave . t)
-      (plantuml . t)
-      (python . t)
-      (ruby . t)
-      (screen . nil)
-      (sh . t) ;; obsolete
-      (shell . t)
-      (sql . t)
-      (sqlite . t)))))
+(defvar sanityinc/org-babel-languages-loaded nil
+  "Non-nil once `org-babel' languages have been loaded.")
+
+(defun sanityinc/load-org-babel-languages-once ()
+  "Load `org-babel' language backends once, on first org buffer."
+  (unless sanityinc/org-babel-languages-loaded
+    (setq sanityinc/org-babel-languages-loaded t)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     (seq-filter
+      (lambda (pair)
+        (locate-library (concat "ob-" (symbol-name (car pair)))))
+      '((R . t)
+        (ditaa . t)
+        (dot . t)
+        (emacs-lisp . t)
+        (gnuplot . t)
+        (haskell . nil)
+        (latex . t)
+        (ledger . t)
+        (ocaml . nil)
+        (octave . t)
+        (plantuml . t)
+        (python . t)
+        (ruby . t)
+        (screen . nil)
+        (sh . t) ;; obsolete
+        (shell . t)
+        (sql . t)
+        (sqlite . t))))))
+
+(add-hook 'org-mode-hook #'sanityinc/load-org-babel-languages-once)
 
 
 (provide 'init-org)
