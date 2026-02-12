@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; 高亮当前行
 (global-hl-line-mode t)
 
 (require 'cc-mode)
@@ -60,13 +59,21 @@
 (global-undo-tree-mode)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
-;; winum-mode 替代废弃的 window-numbering-mode
 (use-package winum
   :ensure t
   :config
   (winum-mode))
 
 (show-paren-mode t)
+
+;; buffer clean
+(require 'midnight)
+(midnight-mode 1)
+
+;; gc
+(setq gc-cons-threshold (* 100 1024 1024))
+(add-hook 'focus-out-hook 'garbage-collect)
+
 
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
