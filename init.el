@@ -25,7 +25,6 @@
 (require 'init-lua)
 (require 'init-rust)
 (require 'init-yasnippet)
-(require 'init-flow)
 
 (when (file-exists-p custom-file)
   (load custom-file))

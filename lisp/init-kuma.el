@@ -47,11 +47,14 @@
 (global-set-key [f5] 'kmacro-start-macro)
 (global-set-key [f6] 'kmacro-end-and-call-macro)
 (fset 'yes-or-no-p 'y-or-n-p)
-(set-face-attribute 'default nil
-                    :family "Google Sans Code"
-                    :height 190
-                    :weight 'normal
-                    :width 'normal)
+(let ((font-height 190))
+  (when (eq system-type 'gnu/linux)
+    (setq font-height (round (* font-height 1.5))))
+  (set-face-attribute 'default nil
+                      :family "Google Sans Code"
+                      :height font-height
+                      :weight 'normal
+                      :width 'normal))
 (setq visible-bell nil)
 (setq ring-bell-function 'ignore)
 
@@ -74,6 +77,9 @@
 (setq gc-cons-threshold (* 100 1024 1024))
 (add-hook 'focus-out-hook 'garbage-collect)
 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
