@@ -12,7 +12,8 @@
                      term-mode-hook
                      shell-mode-hook
                      eshell-mode-hook
-                     vterm-mode-hook))
+                     vterm-mode-hook
+		     yaml-mode-hook))
   (add-hook mode-hook (lambda () (display-line-numbers-mode -1))))
 
 (setq inhibit-startup-message t)
@@ -50,6 +51,7 @@
 (global-set-key [f4] 'ag-project)
 (global-set-key [f5] 'kmacro-start-macro)
 (global-set-key [f6] 'kmacro-end-and-call-macro)
+(global-set-key [f7] 'inline-fill)
 (fset 'yes-or-no-p 'y-or-n-p)
 (let ((font-height 190))
   (when (eq system-type 'gnu/linux)
@@ -84,6 +86,11 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+
+(add-to-list 'load-path "/Users/byron/Documents/elisp/inline")
+(require 'inline)
+(inline-mode 1)
+
 
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
