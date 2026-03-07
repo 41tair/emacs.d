@@ -91,6 +91,9 @@
 (require 'inline)
 (inline-mode 1)
 
+(global-auto-revert-mode 1)
+
+(setq global-auto-revert-non-file-buffers t)
 
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
