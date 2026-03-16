@@ -91,6 +91,11 @@
 (require 'inline)
 (inline-mode 1)
 
+(add-to-list 'load-path "/Users/byron/Documents/elisp/openrouter.el/")
+(require 'openrouter)
+(openrouter-status-mode 1)
+
+
 (global-auto-revert-mode 1)
 
 (setq global-auto-revert-non-file-buffers t)
