@@ -26,18 +26,15 @@
 
 (maybe-require-package 'org-cliplink)
 
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-
-(defvar sanityinc/org-global-prefix-map (make-sparse-keymap)
+(defvar sanityinc/org-global-prefix-map
+  (make-sparse-keymap)
   "A keymap for handy global access to org helpers, particularly clocking.")
 
-(define-key sanityinc/org-global-prefix-map (kbd "j") 'org-clock-goto)
-(define-key sanityinc/org-global-prefix-map (kbd "l") 'org-clock-in-last)
-(define-key sanityinc/org-global-prefix-map (kbd "i") 'org-clock-in)
-(define-key sanityinc/org-global-prefix-map (kbd "o") 'org-clock-out)
 (define-key global-map (kbd "C-c o") sanityinc/org-global-prefix-map)
-
+(define-key sanityinc/org-global-prefix-map (kbd "i") #'org-clock-in)
+(define-key sanityinc/org-global-prefix-map (kbd "j") #'org-clock-goto)
+(define-key sanityinc/org-global-prefix-map (kbd "l") #'org-clock-in-last)
+(define-key sanityinc/org-global-prefix-map (kbd "o") #'org-clock-out)
 
 ;; Various preferences
 (setq org-log-done t
@@ -106,8 +103,6 @@ typical word processor."
 (setq org-support-shift-select t)
 
 ;;; Capturing
-
-(global-set-key (kbd "C-c c") 'org-capture)
 
 (setq org-capture-templates
       `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'

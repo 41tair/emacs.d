@@ -26,6 +26,7 @@
 (require 'init-rust)
 (require 'init-yasnippet)
 (require 'init-borg)
+(require 'init-custom-key)
 
 (when (file-exists-p custom-file)
   (load custom-file))

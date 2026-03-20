@@ -36,22 +36,7 @@
   (insert (format "mkdir -p ~/.ssh;touch ~/.ssh/authorized_keys;echo '%s' >> ~/.ssh/authorized_keys;chmod 600 ~/.ssh/authorized_keys" string))
   (term-send-input))
 
-;;----------global-key------------
-
-(global-set-key (kbd "C->") 'other-window)
-(global-set-key "\C-ca" 'org-agenda)
 (setq org-agenda-files (list "~/Documents/org/GTD.org"))
-
-;; Magit shortcut
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch)  ; magit-dispatch-popup 已废弃
-
-(global-set-key [f12] 'goto-line)
-(global-set-key [f9] 'insertsshkey)
-(global-set-key [f4] 'ag-project)
-(global-set-key [f5] 'kmacro-start-macro)
-(global-set-key [f6] 'kmacro-end-and-call-macro)
-(global-set-key [f7] 'inline-fill)
 (fset 'yes-or-no-p 'y-or-n-p)
 (let ((font-height 190))
   (when (eq system-type 'gnu/linux)

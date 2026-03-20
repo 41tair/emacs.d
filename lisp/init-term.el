@@ -43,8 +43,6 @@
   (interactive)
   (vterm '(4)))
 
-(global-set-key [f8] 'my-force-new-vterm-session)
-
 ;; (with-eval-after-load 'vterm
 ;;   (setq vterm-key-map-alist
 ;;         (append vterm-key-map-alist
