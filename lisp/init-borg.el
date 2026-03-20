@@ -68,11 +68,25 @@ When EXCLUDE-CURRENT is non-nil, do not include the current heading."
   "Return non-nil when every TODO item in the current subtree is done."
   (borg/org-all-done-states-p (borg/org-subtree-todo-states)))
 
+(defun borg/org-has-incomplete-ancestor-p ()
+  "Return non-nil when any ancestor subtree still has unfinished TODOs.
+This prevents archiving a completed child while its parent project remains
+active because of unfinished siblings or an unfinished ancestor heading."
+  (save-excursion
+    (let ((incomplete-ancestor nil))
+      (while (and (not incomplete-ancestor)
+                  (org-up-heading-safe))
+        (unless (borg/org-subtree-all-todos-done-p)
+          (setq incomplete-ancestor t)))
+      incomplete-ancestor)))
+
 (defun borg/org-subtree-archivable-p ()
   "Return non-nil when the current subtree can be archived.
-The heading itself must be done, and every descendant TODO must also be done."
+The heading itself and its descendants must be done, and no ancestor subtree
+may still contain unfinished TODO items."
   (and (borg/org-done-state-p (org-get-todo-state))
-       (borg/org-all-done-states-p (borg/org-subtree-todo-states t))))
+       (borg/org-all-done-states-p (borg/org-subtree-todo-states t))
+       (not (borg/org-has-incomplete-ancestor-p))))
 
 (defun borg/org-collect-archivable-subtrees ()
   "Return markers for all archivable task subtrees in the current buffer.
@@ -100,8 +114,8 @@ entire project is archived as one subtree."
 (defun borg/org-archive-done-task ()
   "Archive all completed task subtrees in the current file.
 If a parent task and all of its descendants are done, archive the whole
-parent subtree. Otherwise, only individually completed child tasks are
-archived."
+parent subtree. Completed child tasks stay in place until every ancestor
+subtree that contains them is also complete."
   (interactive)
   (let ((targets (borg/org-collect-archivable-subtrees))
         (count 0))
@@ -337,6 +351,7 @@ Each SOURCE-FILES entry contributes its sibling `archived/<year>.org' files."
          (span (borg/org-days-between start end))
          (header (borg/org-review-title label start end))
          (buffer-name (borg/org-review-buffer-name label start end))
+         (org-agenda-buffer-tmp-name buffer-name)
          (redo-cmd `(borg/org-open-review-agenda
                      ,label
                      ',start
@@ -363,25 +378,24 @@ Each SOURCE-FILES entry contributes its sibling `archived/<year>.org' files."
     (org-agenda-list nil)
     (let ((agenda-buffer (current-buffer)))
       (with-current-buffer agenda-buffer
-        (rename-buffer buffer-name t)
         (setq-local org-agenda-this-buffer-name buffer-name)
         (setq-local org-agenda-buffer-name buffer-name)
-      (setq-local borg/org-review-label label)
-      (setq-local borg/org-review-start start)
-      (setq-local borg/org-review-end end)
-      (setq-local borg/org-review-source-files source-files)
-      (setq-local org-agenda-files agenda-files)
-      (setq-local org-agenda-skip-archived-trees nil)
-      (setq-local org-agenda-show-log borg/org-review-log-items)
-      (setq-local org-agenda-redo-command redo-cmd)
-      (local-set-key (kbd "g") #'borg/org-review-redo)
-      (local-set-key (kbd "r") #'borg/org-review-redo)
-      (let ((inhibit-read-only t))
-        (add-text-properties
-         (point-min)
-         (point-max)
-         `(org-lprops ,lprops
-                      org-redo-cmd ,redo-cmd))))))) 
+        (setq-local borg/org-review-label label)
+        (setq-local borg/org-review-start start)
+        (setq-local borg/org-review-end end)
+        (setq-local borg/org-review-source-files source-files)
+        (setq-local org-agenda-files agenda-files)
+        (setq-local org-agenda-skip-archived-trees nil)
+        (setq-local org-agenda-show-log borg/org-review-log-items)
+        (setq-local org-agenda-redo-command redo-cmd)
+        (local-set-key (kbd "g") #'borg/org-review-redo)
+        (local-set-key (kbd "r") #'borg/org-review-redo)
+        (let ((inhibit-read-only t))
+          (add-text-properties
+           (point-min)
+           (point-max)
+           `(org-lprops ,lprops
+                        org-redo-cmd ,redo-cmd)))))))
 
 (defun borg/org-review-period (period &rest _)
   "Open a review timeline for PERIOD."

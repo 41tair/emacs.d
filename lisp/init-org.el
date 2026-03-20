@@ -47,6 +47,8 @@
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 80)
 
+(setq org-default-notes-file (expand-file-name "~/Documents/org/GTD.org"))
+
 
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 
@@ -101,18 +103,16 @@ typical word processor."
 
 
 (setq org-support-shift-select t)
-
 ;;; Capturing
 
 (setq org-capture-templates
       `(("t" "todo" entry (file "")  ; "" => `org-default-notes-file'
-         "* NEXT %?\n%U\n" :clock-resume t)
+         "* TODO %?\n%U\n%i\n" :clock-resume t)
         ("n" "note" entry (file "")
-         "* %? :NOTE:\n%U\n%a\n" :clock-resume t)
+         "* %? :NOTE:\n%U\n%a\n%i\n" :clock-resume t)
         ))
 
 
-
 ;;; Refiling
 
 (setq org-refile-use-cache nil)
