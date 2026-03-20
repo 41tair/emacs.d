@@ -160,13 +160,14 @@ typical word processor."
 ;;; To-do settings
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!/!)")
+      (quote ((sequence "TODO(t)" "NEXT(n)" "DOING(i!)" "|" "DONE(d!/!)")
               (sequence "PROJECT(p)" "|" "DONE(d!/!)" "CANCELLED(c@/!)")
               (sequence "WAITING(w@/!)" "DELEGATED(e!)" "HOLD(h)" "|" "CANCELLED(c@/!)")))
       org-todo-repeat-to-state "NEXT")
 
 (setq org-todo-keyword-faces
       (quote (("NEXT" :inherit warning)
+              ("DOING" :inherit mode-line-emphasis)
               ("PROJECT" :inherit font-lock-string-face))))
 
 
@@ -179,11 +180,11 @@ typical word processor."
 (let ((active-project-match "-INBOX/PROJECT"))
 
   (setq org-stuck-projects
-        `(,active-project-match ("NEXT")))
+        `(,active-project-match ("NEXT" "DOING")))
 
   (setq org-agenda-compact-blocks t
         org-agenda-sticky t
-        org-agenda-start-on-weekday nil
+        org-agenda-start-on-weekday 1
         org-agenda-span 'day
         org-agenda-include-diary nil
         org-agenda-sorting-strategy
@@ -213,7 +214,7 @@ typical word processor."
                         (org-agenda-skip-function
                          '(lambda ()
                             (or (org-agenda-skip-subtree-if 'todo '("HOLD" "WAITING"))
-                                (org-agenda-skip-entry-if 'nottodo '("NEXT")))))
+                                (org-agenda-skip-entry-if 'nottodo '("NEXT" "DOING")))))
                         (org-tags-match-list-sublevels t)
                         (org-agenda-sorting-strategy
                          '(todo-state-down effort-up category-keep))))
@@ -222,7 +223,7 @@ typical word processor."
                         (org-tags-match-list-sublevels t)
                         (org-agenda-sorting-strategy
                          '(category-keep))))
-            (tags-todo "-INBOX/-NEXT"
+            (tags-todo "-INBOX/-NEXT/-DOING"
                        ((org-agenda-overriding-header "Orphaned Tasks")
                         (org-agenda-tags-todo-honor-ignore-options t)
                         (org-agenda-todo-ignore-scheduled 'future)
@@ -316,11 +317,22 @@ typical word processor."
 
 (setq org-archive-mark-done nil)
 
-(defun sanityinc/org-year-archive-location (&optional year)
-  "Archive the current subtree into `archived/<year>.org' beside the source file."
-  (let* ((source-file (or (buffer-file-name) default-directory))
-         (source-dir (file-name-directory source-file))
-         (archive-dir (expand-file-name "archived/" source-dir))
+(defun sanityinc/org-archive-root-directory (&optional source-file)
+  "Return the project root directory used for Org archives.
+If SOURCE-FILE is already inside an `archived/' directory, return its parent
+directory so archive files do not end up nested under `archived/archived/'."
+  (let* ((source-path (expand-file-name (or source-file
+                                            (buffer-file-name)
+                                            default-directory)))
+         (source-dir (directory-file-name (file-name-directory source-path))))
+    (if (string-equal (file-name-nondirectory source-dir) "archived")
+        (file-name-directory source-dir)
+      (file-name-as-directory source-dir))))
+
+(defun sanityinc/org-year-archive-location (&optional year source-file)
+  "Archive into `archived/<year>.org' beside SOURCE-FILE."
+  (let* ((archive-root (sanityinc/org-archive-root-directory source-file))
+         (archive-dir (expand-file-name "archived/" archive-root))
          (archive-year (format "%s" (or year (format-time-string "%Y"))))
          (archive-file (expand-file-name (format "%s.org" archive-year) archive-dir)))
     (make-directory archive-dir t)
