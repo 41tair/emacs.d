@@ -42,7 +42,7 @@
         (user-error "Refusing to archive the current or a future week"))
       (unless (borg/org-subtree-all-todos-done-p)
         (user-error "This week still has unfinished items"))
-      (let ((org-archive-location (borg/org-current-year-archive-location)))
+      (let ((org-archive-location (sanityinc/org-current-year-archive-location)))
         (org-archive-subtree-default)))))
 
 (provide 'init-borg)
