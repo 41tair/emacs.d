@@ -315,7 +315,26 @@ typical word processor."
 ;;; Archiving
 
 (setq org-archive-mark-done nil)
-(setq org-archive-location "%s_archive::* Archive")
+
+(defun sanityinc/org-year-archive-location (&optional year)
+  "Archive the current subtree into `archived/<year>.org' beside the source file."
+  (let* ((source-file (or (buffer-file-name) default-directory))
+         (source-dir (file-name-directory source-file))
+         (archive-dir (expand-file-name "archived/" source-dir))
+         (archive-year (format "%s" (or year (format-time-string "%Y"))))
+         (archive-file (expand-file-name (format "%s.org" archive-year) archive-dir)))
+    (make-directory archive-dir t)
+    (concat archive-file "::* Archive")))
+
+(defun sanityinc/org-current-year-archive-location ()
+  "Archive the current subtree into this year's archive file."
+  (sanityinc/org-year-archive-location))
+
+(defun sanityinc/org-set-archive-location ()
+  "Set `org-archive-location' for the current Org buffer."
+  (setq-local org-archive-location (sanityinc/org-current-year-archive-location)))
+
+(add-hook 'org-mode-hook #'sanityinc/org-set-archive-location)
 
 
 
@@ -386,4 +405,3 @@ typical word processor."
 
 
 (provide 'init-org)
-;;; init-org.el ends here
