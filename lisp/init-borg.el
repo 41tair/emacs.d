@@ -236,32 +236,6 @@ With a prefix argument, prompt for the date to review."
           (format-time-string "%Y-%m-%d"
                               (time-subtract end (seconds-to-time 1)))))
 
-(defvar-local borg/org-review-label nil
-  "Label for the current Borg review agenda buffer.")
-
-(defvar-local borg/org-review-start nil
-  "Start time for the current Borg review agenda buffer.")
-
-(defvar-local borg/org-review-end nil
-  "End time for the current Borg review agenda buffer.")
-
-(defvar-local borg/org-review-source-files nil
-  "Original non-archive agenda files for the current Borg review agenda.")
-
-(defun borg/org-review-redo (&rest _)
-  "Refresh the current Borg review agenda."
-  (interactive)
-  (unless (and borg/org-review-label
-               borg/org-review-start
-               borg/org-review-end
-               borg/org-review-source-files)
-    (user-error "Current agenda buffer is not a Borg review view"))
-  (borg/org-open-review-agenda
-   borg/org-review-label
-   borg/org-review-start
-   borg/org-review-end
-   borg/org-review-source-files))
-
 (defun borg/org-review-years (start end)
   "Return the archive years touched by the review range from START to END."
   (let ((start-year (string-to-number (format-time-string "%Y" start)))
@@ -380,16 +354,10 @@ Each SOURCE-FILES entry contributes its sibling `archived/<year>.org' files."
       (with-current-buffer agenda-buffer
         (setq-local org-agenda-this-buffer-name buffer-name)
         (setq-local org-agenda-buffer-name buffer-name)
-        (setq-local borg/org-review-label label)
-        (setq-local borg/org-review-start start)
-        (setq-local borg/org-review-end end)
-        (setq-local borg/org-review-source-files source-files)
         (setq-local org-agenda-files agenda-files)
         (setq-local org-agenda-skip-archived-trees nil)
         (setq-local org-agenda-show-log borg/org-review-log-items)
         (setq-local org-agenda-redo-command redo-cmd)
-        (local-set-key (kbd "g") #'borg/org-review-redo)
-        (local-set-key (kbd "r") #'borg/org-review-redo)
         (let ((inhibit-read-only t))
           (add-text-properties
            (point-min)
