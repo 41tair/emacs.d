@@ -85,5 +85,9 @@
 
 (setq global-auto-revert-non-file-buffers t)
 
+(require 'expand-region)
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
 (provide 'init-kuma)
 ;;; init-kuma.el ends here

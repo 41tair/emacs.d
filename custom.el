@@ -17,11 +17,11 @@
  '(package-selected-packages
    '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
 	counsel csv-mode diminish dimmer dockerfile-mode
-	exec-path-from-shell fullframe gnu-elpa-keyring-update go-mode
-	grab-mac-link ibuffer-vc ivy ivy-historian ivy-xref lua-mode
-	magit org-cliplink org-pomodoro pest-mode projectile
-	py-autopep8 python-mode seq swiper winum writeroom-mode
-	yaml-mode yasnippet))
+	exec-path-from-shell expand-region fullframe
+	gnu-elpa-keyring-update go-mode grab-mac-link ibuffer-vc ivy
+	ivy-historian ivy-xref lua-mode magit org-cliplink
+	org-pomodoro pest-mode projectile py-autopep8 python-mode seq
+	swiper winum writeroom-mode yaml-mode yasnippet))
  '(python-shell-interpreter "/usr/bin/python3")
  '(term-default-bg-color "#000000")
  '(term-default-fg-color "#dddd00"))
