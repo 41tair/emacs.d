@@ -32,6 +32,11 @@
 (when (maybe-require-package 'ivy-historian)
   (add-hook 'after-init-hook (lambda () (ivy-historian-mode t))))
 
+(when (maybe-require-package 'ag)
+  (after-load 'ag
+    (add-to-list 'ag-arguments "--hidden")
+    (add-to-list 'ag-ignore-list ".git")))
+
 (when (maybe-require-package 'counsel)
   (setq-default counsel-mode-override-describe-bindings t)
   (when (maybe-require-package 'diminish)
