@@ -89,5 +89,7 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
+(setq magit-show-long-lines-warning nil)
+
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
