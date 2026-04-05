@@ -60,10 +60,6 @@
 
 (show-paren-mode t)
 
-;; buffer clean
-(require 'midnight)
-(midnight-mode 1)
-
 ;; gc
 (setq gc-cons-threshold (* 100 1024 1024))
 (add-hook 'focus-out-hook 'garbage-collect)

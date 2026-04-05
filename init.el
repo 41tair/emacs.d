@@ -19,6 +19,7 @@
 (require 'init-ivy)
 (require 'init-lsp)
 (require 'init-term)
+(require 'init-cleanup)
 (require 'init-python)
 (require 'init-org)
 (require 'init-ibuffer)
