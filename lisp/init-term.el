@@ -3,6 +3,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'project)
+
 ;; (require 'multi-term)
 ;; (setq multi-term-program "/bin/zsh")
 
@@ -38,10 +40,22 @@
          ((eq system-type 'gnu/linux) "/usr/bin/zsh")
          (t vterm-shell))))
 
+(defun my-vterm-buffer-name ()
+  "Return a fresh vterm buffer base name derived from the current project."
+  (let* ((project (project-current nil))
+         (project-root (and project (project-root project)))
+         (project-name
+          (if project-root
+              (file-name-nondirectory
+               (directory-file-name project-root))
+            (file-name-nondirectory
+             (directory-file-name default-directory)))))
+    (format "*vterm: %s*" project-name)))
+
 (defun my-force-new-vterm-session ()
-  "Create a new vterm session by calling vterm with a prefix argument."
+  "Create a new vterm session named after the current project."
   (interactive)
-  (vterm '(4)))
+  (vterm (my-vterm-buffer-name)))
 
 ;; (with-eval-after-load 'vterm
 ;;   (setq vterm-key-map-alist
