@@ -72,11 +72,11 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(add-to-list 'load-path "/Users/byron/Documents/elisp/inline")
+(add-to-list 'load-path "~/Documents/elisp/inline")
 (require 'inline)
 (inline-mode 1)
 
-(add-to-list 'load-path "/Users/byron/Documents/elisp/openrouter.el/")
+(add-to-list 'load-path "~/Documents/elisp/openrouter.el/")
 (require 'openrouter)
 (openrouter-status-mode 1)
 
