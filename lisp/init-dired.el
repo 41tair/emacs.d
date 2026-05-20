@@ -9,7 +9,11 @@
     (diredfl-global-mode)))
 
 (after-load 'dired
-  (setq dired-recursive-deletes 'top)
+  (require 'dired-x)
+  (setq dired-recursive-deletes 'top
+        dired-omit-files
+        (concat dired-omit-files "\\|^\\.DS_Store\\'"))
+  (add-hook 'dired-mode-hook #'dired-omit-mode)
   (define-key dired-mode-map [mouse-2] 'dired-find-file)
   (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode))
 
