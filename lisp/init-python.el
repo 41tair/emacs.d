@@ -3,12 +3,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package eglot
+(use-package lsp-pyright
   :ensure t
-  :hook ((python-mode python-ts-mode) . eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs
-               '((python-mode python-ts-mode) . ("pyrefly" "lsp"))))
+  :custom
+  (lsp-pyright-langserver-command "pyright")
+  :hook
+  ((python-mode python-ts-mode)
+   . (lambda ()
+       (require 'lsp-pyright)
+       (lsp-deferred))))
 
 (use-package py-autopep8
   :ensure t
