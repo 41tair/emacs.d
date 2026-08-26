@@ -35,7 +35,8 @@
 (when (maybe-require-package 'ag)
   (after-load 'ag
     (add-to-list 'ag-arguments "--hidden")
-    (add-to-list 'ag-ignore-list ".git")))
+    (add-to-list 'ag-ignore-list ".git")
+    (add-to-list 'ag-ignore-list ".DS_Store")))
 
 (when (maybe-require-package 'counsel)
   (setq-default counsel-mode-override-describe-bindings t)
@@ -45,6 +46,9 @@
   (add-hook 'after-init-hook 'counsel-mode)
 
   (when (maybe-require-package 'projectile)
+    (after-load 'projectile
+      (add-to-list 'projectile-globally-ignored-files ".DS_Store"))
+
     (let ((search-function
            (cond
             ((executable-find "rg") 'counsel-rg)

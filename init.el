@@ -18,6 +18,7 @@
 (require 'init-themes)
 (require 'init-ivy)
 (require 'init-lsp)
+(require 'init-typescript)
 (require 'init-term)
 (require 'init-cleanup)
 (require 'init-python)
