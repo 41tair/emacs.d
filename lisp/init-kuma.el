@@ -68,8 +68,12 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(add-to-list 'load-path "~/Documents/elisp/inline")
-(require 'inline)
+(let ((inline-directory (expand-file-name "~/Documents/elisp/inline")))
+  ;; Emacs 31 has its own `inline' library.  Load that first so macro
+  ;; expansion in the local package does not recursively reload inline.el.
+  (require 'inline)
+  (add-to-list 'load-path inline-directory)
+  (load (expand-file-name "inline.el" inline-directory) nil nil))
 (inline-mode 1)
 
 (add-to-list 'load-path "~/Documents/elisp/openrouter.el/")
@@ -83,8 +87,8 @@
 
 (setq global-auto-revert-non-file-buffers t)
 
-(require 'expand-region)
 (use-package expand-region
+  :ensure t
   :bind ("C-=" . er/expand-region))
 
 (setq magit-show-long-lines-warning nil)
