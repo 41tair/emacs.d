@@ -14,10 +14,11 @@
    '("b11edd2e0f97a0a7d5e66a9b82091b44431401ac394478beb44389cf54e6db28"
      default))
  '(package-selected-packages
-   '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-	counsel diminish dimmer exec-path-from-shell expand-region
-	fullframe gnu-elpa-keyring-update grab-mac-link ibuffer-vc ivy
-	ivy-historian ivy-xref lua-mode org-cliplink org-pomodoro
+   '(ag caddyfile-mode color-theme-sanityinc-solarized
+	color-theme-sanityinc-tomorrow counsel diminish dimmer
+	exec-path-from-shell expand-region fullframe
+	gnu-elpa-keyring-update go go-mode grab-mac-link ibuffer-vc
+	ivy ivy-historian ivy-xref lua-mode org-cliplink org-pomodoro
 	projectile seq swiper writeroom-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
