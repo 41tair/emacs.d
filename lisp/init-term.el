@@ -31,6 +31,7 @@
 
 (use-package vterm
   :ensure t
+  :commands (vterm vterm-other-window)
   :hook (vterm-mode . (lambda ()
                         (display-line-numbers-mode -1)))
   :config

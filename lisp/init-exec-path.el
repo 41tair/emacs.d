@@ -1,58 +1,48 @@
-;; -*- lexical-binding: t -*-
-;;; init-exec-path.el --- PATH configuration -*- lexical-binding: t -*-
-;;; Commentary:
-;;; Code:
-
-(require-package 'exec-path-from-shell)
-
-(after-load 'exec-path-from-shell
-  (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE"))
-    (add-to-list 'exec-path-from-shell-variables var)))
+;;; init-exec-path.el --- Import the shell environment once -*- lexical-binding: t -*-
 
 (defun byron/import-login-shell-env ()
-  "Import all environment variables from the user's login shell."
+  "Import exported variables from one interactive login shell.
+NUL delimiters preserve multiline values.  A marker discards shell startup
+output; values are never logged."
   (let ((shell (or (getenv "SHELL") shell-file-name))
-        env-output)
+        (marker "\0EMACS_ENV_START\0"))
     (when shell
       (with-temp-buffer
-        (when (eq 0 (call-process shell nil t nil "-lc" "env"))
-          (setq env-output (buffer-string)))))
-    (when env-output
-      (dolist (line (split-string env-output "\n" t))
-        (when (string-match "\\`\\([^=]+\\)=\\(.*\\)\\'" line)
-          (let ((name (match-string 1 line))
-                (value (match-string 2 line)))
-            (unless (member name '("_" "PWD" "OLDPWD" "SHLVL"))
-              (setenv name value)))))
-      (let ((path (getenv "PATH")))
-        (when path
-          (setq exec-path (append (parse-colon-path path)
+        (if (not (eq 0 (call-process shell nil (list t nil) nil "-lic"
+                                    "printf '\\0EMACS_ENV_START\\0'; /usr/bin/env -0")))
+            (display-warning 'init "Could not import the login shell environment")
+          (goto-char (point-min))
+          (unless (search-forward marker nil t)
+            (error "Login shell did not produce an environment marker"))
+          (dolist (entry (split-string (buffer-substring-no-properties
+                                       (point) (point-max)) "\0" t))
+            (when (string-match "\\`\\([A-Za-z_][A-Za-z0-9_]*\\)=" entry)
+              (let ((name (match-string 1 entry))
+                    (value (substring entry (match-end 0))))
+                (unless (member name '("_" "PWD" "OLDPWD" "SHLVL"))
+                  (setenv name value)))))
+          (setq exec-path (append (parse-colon-path (or (getenv "PATH") ""))
                                   (list exec-directory))))))))
 
-;; (when (memq window-system '(mac ns x))
-;;   (exec-path-from-shell-initialize))
-;; (exec-path-from-shell-copy-envs '("GOPATH" "LANG" "GPG_AGENT_INFO" "SSH_AUTH_SOCK"))
-(when (and (or (memq window-system '(mac ns))
-               (daemonp))
-           (require 'exec-path-from-shell nil t))
-  ;; (setq exec-path-from-shell-debug t)
-  (exec-path-from-shell-initialize)
-  (byron/import-login-shell-env)
-  (message "Initialized PATH and environment from login shell."))
+(when (or (memq window-system '(mac ns x pgtk)) (daemonp))
+  (byron/import-login-shell-env))
 
-;; Add Go bin directory to exec-path for gopls and other Go tools
+;; A shell-provided LIBRARY_PATH must not hide native compiler runtime libraries.
+(when (fboundp 'byron/native-compiler-environment)
+  (byron/native-compiler-environment))
+
+;; Preserve the existing Go workspace and proxy preferences.
 (let ((gopath (or (getenv "GOPATH") (expand-file-name "~/Documents/go"))))
-  (unless (getenv "GOPATH")
-    (setenv "GOPATH" gopath))
+  (unless (getenv "GOPATH") (setenv "GOPATH" gopath))
   (unless (getenv "GOMODCACHE")
     (setenv "GOMODCACHE" (expand-file-name "pkg/mod" gopath)))
-  (unless (getenv "GOPROXY")
-    (setenv "GOPROXY" "https://goproxy.cn,direct"))
+  (unless (getenv "GOPROXY") (setenv "GOPROXY" "https://goproxy.cn,direct"))
   (let ((gobin (or (getenv "GOBIN") (expand-file-name "bin" gopath))))
     (when (file-directory-p gobin)
       (add-to-list 'exec-path gobin)
-      (setenv "PATH" (concat gobin ":" (getenv "PATH"))))))
+      (setenv "PATH" (mapconcat #'identity
+                                (delete-dups (cons gobin (parse-colon-path
+                                                         (or (getenv "PATH") ""))))
+                                path-separator)))))
 
-(setq exec-path-from-shell-check-startup-files nil)
 (provide 'init-exec-path)
-;;; init-exec-path.el ends here

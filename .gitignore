@@ -21,3 +21,10 @@ elpa/*
 /network-security.data
 /eshell/
 /elpa-29.4/
+/elpa-*/
+/tree-sitter/
+/eln-cache/
+/history
+/places
+/.emacs.desktop.lock
+/artifacts/emacs-30.1-native/

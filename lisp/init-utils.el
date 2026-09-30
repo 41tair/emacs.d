@@ -3,15 +3,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(if (fboundp 'with-eval-after-load)
-    (defalias 'after-load 'with-eval-after-load)
-  (defmacro after-load (feature &rest body)
-    "After FEATURE is loaded, evaluate BODY."
-    (declare (indent defun))
-    `(eval-after-load ,feature
-       '(progn ,@body))))
-
-
 ;;----------------------------------------------------------------------------
 ;; Handier way to add modes to auto-mode-alist
 ;;----------------------------------------------------------------------------
@@ -52,18 +43,7 @@
 ;;----------------------------------------------------------------------------
 ;; Rename the current file
 ;;----------------------------------------------------------------------------
-(defun rename-this-file-and-buffer (new-name)
-  "Renames both current buffer and file it's visiting to NEW-NAME."
-  (interactive "sNew name: ")
-  (let ((name (buffer-name))
-        (filename (buffer-file-name)))
-    (unless filename
-      (error "Buffer '%s' is not visiting a file!" name))
-    (progn
-      (when (file-exists-p filename)
-        (rename-file filename new-name 1))
-      (set-visited-file-name new-name)
-      (rename-buffer new-name))))
+(defalias 'rename-this-file-and-buffer #'rename-visited-file)
 
 ;;----------------------------------------------------------------------------
 ;; Browse current HTML file

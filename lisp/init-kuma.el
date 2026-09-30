@@ -5,7 +5,6 @@
 
 (global-hl-line-mode t)
 
-(require 'cc-mode)
 (column-number-mode 1)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 (dolist (mode-hook '(org-mode-hook
@@ -13,7 +12,8 @@
                      shell-mode-hook
                      eshell-mode-hook
                      vterm-mode-hook
-		     yaml-mode-hook))
+                     yaml-mode-hook
+                     yaml-ts-mode-hook))
   (add-hook mode-hook (lambda () (display-line-numbers-mode -1))))
 
 (setq inhibit-startup-message t)
@@ -37,7 +37,7 @@
   (term-send-input))
 
 (setq org-agenda-files (list "~/Documents/org/GTD.org"))
-(fset 'yes-or-no-p 'y-or-n-p)
+(setopt use-short-answers t)
 (let ((font-height 190))
   (when (eq system-type 'gnu/linux)
     (setq font-height (round (* font-height 1.5))))
@@ -50,8 +50,11 @@
 (setq ring-bell-function 'ignore)
 
 ;; Undo tree
-(global-undo-tree-mode)
-(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+(setq undo-tree-history-directory-alist
+      (list (cons "." (expand-file-name "undo" user-emacs-directory))))
+(use-package undo-tree
+  :ensure t
+  :hook (after-init . global-undo-tree-mode))
 
 (use-package winum
   :ensure t
@@ -60,21 +63,38 @@
 
 (show-paren-mode t)
 
-;; gc
-(setq gc-cons-threshold (* 100 1024 1024))
-(add-hook 'focus-out-hook 'garbage-collect)
+;; Collect after losing focus, once Emacs has also been idle for a while.
+(defvar byron/gc-idle-timer nil)
+(defun byron/gc-after-focus-change ()
+  "Debounce focus changes and collect while Emacs is idle."
+  (when (timerp byron/gc-idle-timer)
+    (cancel-timer byron/gc-idle-timer))
+  (setq byron/gc-idle-timer nil)
+  (unless (seq-some #'frame-focus-state (frame-list))
+    (setq byron/gc-idle-timer (run-with-idle-timer 5 nil #'garbage-collect))))
+(add-function :after after-focus-change-function #'byron/gc-after-focus-change)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(defun byron/setup-graphical-frame (frame)
+  "Enable graphical features when FRAME is created, including daemon clients."
+  (when (display-graphic-p frame)
+    (with-selected-frame frame
+      (pixel-scroll-precision-mode 1))))
+(add-hook 'after-make-frame-functions #'byron/setup-graphical-frame)
+(byron/setup-graphical-frame (selected-frame))
+(add-hook 'text-mode-hook #'visual-wrap-prefix-mode)
 
-(add-to-list 'load-path "~/Documents/elisp/inline")
-(require 'inline)
-(inline-mode 1)
+(let ((directory (expand-file-name "~/Documents/elisp/inline")))
+  (when (file-directory-p directory)
+    (add-to-list 'load-path directory)
+    (autoload 'inline-fill "inline" nil t)
+    (autoload 'inline-mode "inline" nil t)
+    (add-hook 'after-init-hook (lambda () (inline-mode 1)))))
 
-(add-to-list 'load-path "~/Documents/elisp/openrouter.el/")
-(require 'openrouter)
-(openrouter-status-mode 1)
+(let ((directory (expand-file-name "~/Documents/elisp/openrouter.el")))
+  (when (file-directory-p directory)
+    (add-to-list 'load-path directory)
+    (autoload 'openrouter-status-mode "openrouter" nil t)
+    (add-hook 'after-init-hook (lambda () (openrouter-status-mode 1)))))
 
 
 (setq delete-by-moving-to-trash t)
@@ -83,8 +103,8 @@
 
 (setq global-auto-revert-non-file-buffers t)
 
-(require 'expand-region)
 (use-package expand-region
+  :ensure t
   :bind ("C-=" . er/expand-region))
 
 (setq magit-show-long-lines-warning nil)

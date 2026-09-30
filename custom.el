@@ -15,10 +15,12 @@
      default))
  '(package-selected-packages
    '(ag color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow
-	counsel diminish dimmer exec-path-from-shell fullframe
-	gnu-elpa-keyring-update grab-mac-link ibuffer-vc ivy
-	ivy-historian ivy-xref lua-mode org-cliplink org-pomodoro
-	projectile seq swiper typescript-mode writeroom-mode)))
+     company consult-lsp counsel csv-mode diff-hl diminish dimmer diredfl
+     exec-path-from-shell expand-region fullframe gnu-elpa-keyring-update
+     go-mode grab-mac-link ibuffer-vc ivy ivy-historian ivy-xref lsp-mode
+     lsp-pyright lsp-ui lua-mode magit markdown-mode org-cliplink org-pomodoro
+     projectile py-autopep8 rust-mode seq swiper typescript-mode undo-tree
+     vterm web-mode winum writeroom-mode yaml-mode yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

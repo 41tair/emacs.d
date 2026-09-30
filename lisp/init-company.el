@@ -1,57 +1,19 @@
-;; WAITING: haskell-mode sets tags-table-list globally, breaks tags-completion-at-point-function
-;; TODO Default sort order should place [a-z] before punctuation
+;;; init-company.el --- Completion through CAPF -*- lexical-binding: t -*-
 
 (setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 
-(when (maybe-require-package 'company)
-  (after-load 'company
-    (diminish 'company-mode "CMP")
-    (define-key company-mode-map (kbd "M-/") 'company-complete)
-    (define-key company-active-map (kbd "M-/") 'company-other-backend)
-    (define-key company-active-map (kbd "C-n") 'company-select-next)
-    (define-key company-active-map (kbd "C-p") 'company-select-previous)
-    (setq-default company-dabbrev-other-buffers 'all
-                  company-tooltip-align-annotations t))
-  (when (maybe-require-package 'company-quickhelp)
-    (after-load 'company
-      (company-quickhelp-mode 1)))
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)
+  :bind (("M-C-/" . company-complete)
+         :map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
+  :custom
+  (company-idle-delay 0.2)
+  (company-minimum-prefix-length 2)
+  (company-tooltip-align-annotations t))
 
-  (defun sanityinc/local-push-company-backend (backend)
-    "Add BACKEND to a buffer-local version of `company-backends'."
-    (make-local-variable 'company-backends)
-    (push backend company-backends)))
-
-;; Suspend page-break-lines-mode while company menu is active
-;; (see https://github.com/company-mode/company-mode/issues/416)
-(after-load 'company
-  (after-load 'page-break-lines
-    (defvar sanityinc/page-break-lines-on-p nil)
-    (make-variable-buffer-local 'sanityinc/page-break-lines-on-p)
-
-    (defun sanityinc/page-break-lines-disable (&rest ignore)
-      (when (setq sanityinc/page-break-lines-on-p (bound-and-true-p page-break-lines-mode))
-        (page-break-lines-mode -1)))
-
-    (defun sanityinc/page-break-lines-maybe-reenable (&rest ignore)
-      (when sanityinc/page-break-lines-on-p
-        (page-break-lines-mode 1)))
-
-    (add-hook 'company-completion-started-hook 'sanityinc/page-break-lines-disable)
-    (add-hook 'company-completion-finished-hook 'sanityinc/page-break-lines-maybe-reenable)
-    (add-hook 'company-completion-cancelled-hook 'sanityinc/page-break-lines-maybe-reenable)))
-
-
-;; python complete with jedi
-(defun my/python-mode-hook ()
-  (add-to-list 'company-backends 'company-jedi))
-
-(add-hook 'python-mode-hook 'my/python-mode-hook)
-
-(add-hook 'go-mode-hook
-      (lambda ()
-        (set (make-local-variable 'company-backends) '(company-go))
-        (company-mode)))
-
-;;(setq anaconda-mode-localhost-address "localhost")
+;; LSP supplies company-capf; retain standard backends for other buffers.
 (provide 'init-company)

@@ -40,7 +40,7 @@
 (setq org-log-done t
       org-edit-timestamp-down-means-later t
       org-hide-emphasis-markers t
-      org-catch-invisible-edits 'show
+      org-fold-catch-invisible-edits 'show
       org-export-coding-system 'utf-8
       org-fast-tag-selection-single-key 'expert
       org-html-validation-link nil
@@ -75,7 +75,7 @@ typical word processor."
         (setq truncate-lines nil)
         (setq word-wrap t)
         (setq cursor-type 'bar)
-        (when (eq major-mode 'org)
+        (when (derived-mode-p 'org-mode)
           (kill-local-variable 'buffer-face-mode-face))
         (buffer-face-mode 1)
         ;;(delete-selection-mode 1)
@@ -121,7 +121,7 @@ typical word processor."
 (setq org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
 
 (with-eval-after-load 'org-agenda
-  (add-to-list 'org-agenda-after-show-hook 'org-show-entry))
+  (add-to-list 'org-agenda-after-show-hook 'org-fold-show-entry))
 
 (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
 
@@ -275,8 +275,7 @@ typical word processor."
 (setq org-clock-out-remove-zero-time-clocks t)
 
 ;; Show clock sums as hours and minutes, not "n days" etc.
-(setq org-time-clocksum-format
-      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+(setq org-duration-format 'h:mm)
 
 
 
@@ -330,7 +329,6 @@ directory so archive files do not end up nested under `archived/archived/'."
          (archive-dir (expand-file-name "archived/" archive-root))
          (archive-year (format "%s" (or year (format-time-string "%Y"))))
          (archive-file (expand-file-name (format "%s.org" archive-year) archive-dir)))
-    (make-directory archive-dir t)
     (concat archive-file "::* Archive")))
 
 (defun sanityinc/org-current-year-archive-location ()
@@ -342,6 +340,17 @@ directory so archive files do not end up nested under `archived/archived/'."
   (setq-local org-archive-location (sanityinc/org-current-year-archive-location)))
 
 (add-hook 'org-mode-hook #'sanityinc/org-set-archive-location)
+
+(defun sanityinc/org-create-archive-directory (&rest _)
+  "Create the archive directory only when a subtree is actually archived."
+  (let* ((location (car (org-archive--compute-location
+                        (or (org-entry-get nil "ARCHIVE" 'inherit)
+                            org-archive-location))))
+         (directory (and location (file-name-directory location))))
+    (when directory (make-directory directory t))))
+
+(with-eval-after-load 'org-archive
+  (advice-add 'org-archive-subtree :before #'sanityinc/org-create-archive-directory))
 
 
 
@@ -403,12 +412,30 @@ directory so archive files do not end up nested under `archived/archived/'."
         (python . t)
         (ruby . t)
         (screen . nil)
-        (sh . t) ;; obsolete
         (shell . t)
         (sql . t)
         (sqlite . t))))))
 
 (add-hook 'org-mode-hook #'sanityinc/load-org-babel-languages-once)
+
+;; Load review implementation only when a command or agenda needs it.
+(dolist (command '(borg/org-review-week borg/org-review-month
+                   borg/org-review-quarter borg/org-review-year
+                   borg/org-archive-done-task borg/org-archive-done-week))
+  (autoload command "init-borg" nil t))
+(defvar borg/org-review-prefix-map
+  (let ((map (make-sparse-keymap)))
+    (keymap-set map "w" #'borg/org-review-week)
+    (keymap-set map "m" #'borg/org-review-month)
+    (keymap-set map "q" #'borg/org-review-quarter)
+    (keymap-set map "y" #'borg/org-review-year)
+    map))
+(keymap-set sanityinc/org-global-prefix-map "A" #'borg/org-archive-done-task)
+(define-key sanityinc/org-global-prefix-map (kbd "r") borg/org-review-prefix-map)
+(defun byron/load-borg-for-agenda (&rest _)
+  "Register review commands before displaying the agenda dispatcher."
+  (require 'init-borg))
+(advice-add 'org-agenda :before #'byron/load-borg-for-agenda)
 
 
 (provide 'init-org)

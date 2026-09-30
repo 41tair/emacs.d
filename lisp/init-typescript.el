@@ -27,6 +27,7 @@
   "Set up TypeScript editing."
   (setq-local js-indent-level 2)
   (setq-local typescript-indent-level 2)
+  (setq-local typescript-ts-mode-indent-offset 2)
   (my/typescript-use-project-node-modules)
   (when (fboundp 'lsp-deferred)
     (lsp-deferred)))
@@ -42,23 +43,15 @@
                  (string-match-p "\\.tsx\\'" buffer-file-name)))
     (my/typescript-setup)))
 
-(defun my/typescript-treesit-available-p (language)
-  "Return non-nil when tree-sitter grammar for LANGUAGE is available."
-  (and (fboundp 'treesit-available-p)
-       (treesit-available-p)
-       (treesit-language-available-p language)))
+(defalias 'my/typescript-treesit-available-p #'byron/treesit-ready-p)
 
-(when (require 'treesit nil t)
-  (dolist (source '((typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "typescript/src"))
-                    (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" nil "tsx/src"))))
-    (add-to-list 'treesit-language-source-alist source))
-
-  (defun my/typescript-install-treesit-grammars ()
-    "Install TypeScript and TSX tree-sitter grammars."
-    (interactive)
-    (dolist (language '(typescript tsx))
-      (unless (treesit-language-available-p language)
-        (treesit-install-language-grammar language)))))
+(defun my/typescript-install-treesit-grammars ()
+  "Install TypeScript/TSX grammars and select their modes immediately."
+  (interactive)
+  (byron/install-treesit-grammars '(typescript tsx))
+  (dolist (pattern my/typescript-extensions)
+    (add-auto-mode 'typescript-ts-mode pattern))
+  (add-auto-mode 'tsx-ts-mode "\\.tsx\\'"))
 
 (if (my/typescript-treesit-available-p 'typescript)
     (dolist (pattern my/typescript-extensions)

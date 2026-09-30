@@ -2,7 +2,8 @@
 (require-package 'color-theme-sanityinc-tomorrow)
 
 ;; If you don't customize it, this is the theme you get.
-(setq-default custom-enabled-themes '(sanityinc-tomorrow-bright))
+(unless (get 'custom-enabled-themes 'saved-value)
+  (setq-default custom-enabled-themes '(sanityinc-tomorrow-bright)))
 
 ;; Ensure that themes will be applied even if they have not been customized
 (defun reapply-themes ()

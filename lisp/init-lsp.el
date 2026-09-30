@@ -3,11 +3,22 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq read-process-output-max (* 1024 1024)
+      lsp-diagnostics-provider :flymake)
+
+(use-package go-mode
+  :ensure t
+  :mode "\\.go\\'")
+
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.ya?ml\\'")
+
 ;; LSP Mode - 核心配置
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook ((go-mode . lsp-deferred)
+  :hook (((go-mode go-ts-mode) . lsp-deferred)
          (lsp-mode . lsp-enable-which-key-integration))
   :config
   ;; gopls 配置
@@ -20,17 +31,9 @@
   :ensure t
   :commands lsp-ui-mode)
 
-;; Company - 补全框架
-(use-package company
-  :ensure t
-  :hook (after-init . global-company-mode)
-  :config
-  (setq company-idle-delay 0.2)
-  (setq company-minimum-prefix-length 2))
-
 ;; Which-key - 显示快捷键提示
 (use-package which-key
-  :ensure t
+  :ensure nil
   :config (which-key-mode))
 
 ;; Consult-lsp - LSP 与 consult 集成
@@ -38,12 +41,21 @@
   :ensure t
   :after (lsp-mode consult))
 
-;; Go mode 保存时格式化
+;; Install saving hooks only in buffers with an active LSP workspace.
+(defun byron/lsp-go-before-save ()
+  "Organize imports and format Go when the language server is ready."
+  (when (and (bound-and-true-p lsp-managed-mode) (lsp-workspaces))
+    (when (lsp-feature? "textDocument/codeAction")
+      (lsp-organize-imports))
+    (when (lsp-feature? "textDocument/formatting")
+      (lsp-format-buffer))))
+
 (defun lsp-go-install-save-hooks ()
-  "Set up before-save hooks for Go."
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+  "Keep the Go save hook in sync with LSP management."
+  (when (derived-mode-p 'go-mode 'go-ts-mode)
+    (if (bound-and-true-p lsp-managed-mode)
+        (add-hook 'before-save-hook #'byron/lsp-go-before-save nil t)
+      (remove-hook 'before-save-hook #'byron/lsp-go-before-save t))))
+(add-hook 'lsp-managed-mode-hook #'lsp-go-install-save-hooks)
 
 (provide 'init-lsp)
-;;; init-lsp.el ends here
