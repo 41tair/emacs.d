@@ -85,9 +85,11 @@
 
 (let ((directory (expand-file-name "~/Documents/elisp/inline")))
   (when (file-directory-p directory)
+    ;; Load the built-in namesake before the local package can shadow it.
+    (require 'inline)
     (add-to-list 'load-path directory)
-    (autoload 'inline-fill "inline" nil t)
-    (autoload 'inline-mode "inline" nil t)
+    (autoload 'inline-fill (expand-file-name "inline.el" directory) nil t)
+    (autoload 'inline-mode (expand-file-name "inline.el" directory) nil t)
     (add-hook 'after-init-hook (lambda () (inline-mode 1)))))
 
 (let ((directory (expand-file-name "~/Documents/elisp/openrouter.el")))
