@@ -23,17 +23,15 @@
 
 (defun byron/treesit-remap-modes ()
   "Prefer available tree-sitter modes, keeping ordinary modes as fallbacks."
+  ;; Emacs 30's yaml-ts-mode has no YAML indentation; keep yaml-mode.
   (dolist (entry '((python python-mode python-ts-mode)
                    (go go-mode go-ts-mode)
                    (rust rust-mode rust-ts-mode)
-                   (json js-json-mode json-ts-mode)
-                   (yaml yaml-mode yaml-ts-mode)))
+                   (json js-json-mode json-ts-mode)))
     (when (byron/treesit-ready-p (car entry))
       (setf (alist-get (cadr entry) major-mode-remap-alist) (caddr entry))))
   (when (byron/treesit-ready-p 'json)
-    (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode)))
-  (when (byron/treesit-ready-p 'yaml)
-    (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))))
+    (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))))
 
 (defun byron/install-treesit-grammars (&optional languages)
   "Install missing grammars for LANGUAGES, or all configured languages.

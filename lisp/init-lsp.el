@@ -12,7 +12,11 @@
 
 (use-package yaml-mode
   :ensure t
-  :mode "\\.ya?ml\\'")
+  :mode "\\.ya?ml\\'"
+  :custom
+  (yaml-indent-offset 2)
+  :bind (:map yaml-mode-map
+              ("RET" . newline-and-indent)))
 
 ;; LSP Mode - 核心配置
 (use-package lsp-mode
