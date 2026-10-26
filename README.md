@@ -30,6 +30,12 @@ Emacs packages are installed automatically on first startup. Install external to
  - Tree-sitter grammars: run `M-x byron/install-treesit-grammars`; requires Git and a C/C++ compiler.
  - vterm: requires CMake and a C compiler to build its module.
 
+Magit status in `~/Documents/dify/dify/` enables on-demand diff hunks.
+Expand a file with `TAB` to load its diff; staging works normally.
+Run `M-x byron-magit-lazy-diff-mode` in the status buffer to disable it and
+restore the original renderer. Rename, mode-change, binary and conflict
+diffs use Magit's original path.
+
 # Support Enviorment
  - Emacs 30
  - macOS 15.8

@@ -111,5 +111,41 @@
 
 (setq magit-show-long-lines-warning nil)
 
+(defun byron/magit-gc-before-large-refresh ()
+  "Prune stale visibility state and collect markers before large refreshes.
+Repeated rebuilds otherwise retain dead markers until the next collection,
+making every insertion and deletion in a large diff increasingly costly."
+  (when-let* ((status-buffer (if (derived-mode-p 'magit-status-mode)
+                                (current-buffer)
+                              (ignore-errors
+                                (magit-get-mode-buffer 'magit-status-mode)))))
+    (with-current-buffer status-buffer
+      (when (or (> (buffer-size) (* 1024 1024))
+                (bound-and-true-p byron-magit-lazy-diff-mode))
+        ;; Keep current folds, without retaining sections from old branches.
+        ;; Deferred children are absent from the tree; retain their cache.
+        (when (and magit-root-section magit-section-visibility-cache
+                   (not (bound-and-true-p byron-magit-lazy-diff-mode)))
+          (let ((sections (make-hash-table :test #'equal)))
+            (magit-map-sections
+             (lambda (section)
+               (puthash (magit-section-ident section) t sections)))
+            (setq magit-section-visibility-cache
+                  (seq-filter (lambda (entry) (gethash (car entry) sections))
+                              magit-section-visibility-cache))))
+        (garbage-collect)))))
+
+(with-eval-after-load 'magit-mode
+  (add-hook 'magit-pre-refresh-hook #'byron/magit-gc-before-large-refresh))
+
+(defun byron/magit-enable-dify-lazy-diffs ()
+  "Enable on-demand status hunks in the main Dify checkout."
+  (when (equal default-directory (expand-file-name "~/Documents/dify/dify/"))
+    (byron-magit-lazy-diff-mode 1)))
+
+(with-eval-after-load 'magit
+  (require 'byron-magit-lazy-diff)
+  (add-hook 'magit-status-mode-hook #'byron/magit-enable-dify-lazy-diffs))
+
 (provide 'init-kuma)
 ;;; init-kuma.el ends here
